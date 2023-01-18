@@ -1,67 +1,4 @@
----
-output: github_document
----
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
-
 # SCC_R_package
-
-<!-- badges: start -->
-<!-- badges: end -->
-
-The goal of SCC_R_package is to ...
-
-## Installation
-
-You can install the released version of SCC_R_package from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("SCCTempConverter")
-```
-
-And the development version from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-devtools::install_github("jedgroev/SCC_R_package")
-```
-
-## Example
-
-<!-- This is a basic example which shows you how to solve a common problem: -->
-
-<!-- ```{r example} -->
-<!-- library(SCCTempConverter) -->
-<!-- ## basic example code -->
-<!-- ``` -->
-
-<!-- What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so: -->
-
-<!-- ```{r cars} -->
-<!-- summary(cars) -->
-<!-- ``` -->
-
-<!-- You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/master/examples>. -->
-
-<!-- You can also embed plots, for example: -->
-
-<!-- ```{r pressure, echo = FALSE} -->
-<!-- plot(pressure) -->
-<!-- ``` -->
-
-<!-- In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN. -->
-
-
-
 
 ```r
 install.packages('devtools')
@@ -71,8 +8,7 @@ install.packages('pkgdown')
 ## 1. Making a basic R-package (without github/gitlab)
 
 Manually make:
-
-1) Package Directory (SCC_R_package)
+  1) Package Directory (SCC_R_package)
 2) R-directory (SCC_R_package/R)
 3) Functions (SCC_R_package/R/functions.R)
 4) Description-file (SCC_R_package/DESCRIPTION)
@@ -106,19 +42,17 @@ devtools::load_all()
 ?F_to_C
 ```
 
-## 3. data
-
-## 4. github 
+## 3. github 
 
 1) go to github or gitlab
 2) create a new project and add already a readme
 3) copy the http link (e.g. https://github.com/jedgroev/SCC_R_package.git)
 4) create a new project in rstudio (choose git-project)
-  1. specify the directory to the package (SCC_R_package)
-  2. paste the http link (https://github.com/jedgroev/SCC_R_package.git)
-  3. press pull (README is added)
-  4. make a change in the README 
-  5. commit / push changes to git
+1. specify the directory to the package (SCC_R_package)
+2. paste the http link (https://github.com/jedgroev/SCC_R_package.git)
+3. press pull (README is added)
+4. make a change in the README 
+5. commit / push changes to git
 
 Important git commands: 
   - commit: use commit to submit changes to git.
@@ -127,10 +61,6 @@ Important git commands:
 
 Tips and tricks: 
   - commit changes with a meaningfull description
-
-## 5. Large File Support 
-
-## 
 
 ## 4. build a website 
 
@@ -234,5 +164,6 @@ write.table(f, file = 'R/functions.R', sep = '', row.names=F,col.names=F, quote=
 
 ```
 
+devtools::document()
 
-
+## 

@@ -3,19 +3,22 @@
     "path": "~/Dropbox/My Mac (MacBook Pro van Johannes)/Downloads/2_GITHUB/SCC_R_package2/.Rbuildignore",
     "project_path": ".Rbuildignore",
     "type": "text",
-    "hash": "1761913819",
+    "hash": "2251963122",
     "contents": "",
     "dirty": false,
     "created": 1674034770139.0,
     "source_on_save": false,
     "relative_order": 6,
-    "properties": {},
+    "properties": {
+        "cursorPosition": "4,10",
+        "scrollLine": "0"
+    },
     "folds": "",
-    "lastKnownWriteTime": 1674034669,
+    "lastKnownWriteTime": 1674049892,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1674034669,
+    "last_content_update": 1674049892114,
     "read_only": false,
     "read_only_alternatives": []
 }
