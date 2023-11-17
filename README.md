@@ -33,13 +33,14 @@ R package
       - [7.1 Create YAML Configuration](#71-create-yaml-configuration)
       - [7.2 Edit the \_pkgdown.yml File](#72-edit-the-_pkgdownyml-file)
       - [7.3 Build Your Package Website](#73-build-your-package-website)
-      - [7.4 Activate Pages on GitHub and
-        GitLab](#74-activate-pages-on-github-and-gitlab)
-          - [7.4.1 GitHub Pages
-            Activation](#741-github-pages-activation)
-          - [7.4.2 GitLab Pages
-            Activation](#742-gitlab-pages-activation)
-      - [7.5 View Your Package Website](#75-view-your-package-website)
+      - [7.4 Commit Changes to Git](#74-commit-changes-to-git)
+      - [7.5 Activate Pages on GitHub and
+        GitLab](#75-activate-pages-on-github-and-gitlab)
+          - [7.5.1 GitHub Pages
+            Activation](#751-github-pages-activation)
+          - [7.5.2 GitLab Pages
+            Activation](#752-gitlab-pages-activation)
+      - [7.6 View Your Package Website](#76-view-your-package-website)
   - [8 Large File Support](#8-large-file-support)
       - [8.1 Set up LFS](#81-set-up-lfs)
       - [8.2 Select file types](#82-select-file-types)
@@ -544,7 +545,7 @@ Gitignore:
 
 # 7 Building a website
 
-In this tutorial, you’ll learn how to create a YAML configuration file
+In this section, you’ll learn how to create a YAML configuration file
 (\_pkgdown.yml) for your R package using usethis::use\_pkgdown(). We’ll
 also cover the importance of YAML files and the steps to build and view
 your package website.
@@ -600,7 +601,7 @@ pkgdown::build_site()
 This command creates a `docs/` directory containing HTML files for your
 website.
 
-2.2 Commit Changes to Git
+## 7.4 Commit Changes to Git
 
 Before building the website, commit the changes to your Git repository:
 
@@ -612,9 +613,9 @@ usethis::use_git_commit(message = "Add pkgdown configuration and setup")
 Alternatively, commit using the approach as described in the GIT
 section.
 
-## 7.4 Activate Pages on GitHub and GitLab
+## 7.5 Activate Pages on GitHub and GitLab
 
-### 7.4.1 GitHub Pages Activation
+### 7.5.1 GitHub Pages Activation
 
     Go to your GitHub repository.
     Navigate to the "Settings" tab.
@@ -622,7 +623,7 @@ section.
     Set the "Source" branch to main or master (whichever branch you are using).
     Confirm the activation.
 
-### 7.4.2 GitLab Pages Activation
+### 7.5.2 GitLab Pages Activation
 
 The activation process for GitLab Pages can vary based on your GitLab
 instance and permissions. Typically, it involves:
@@ -635,7 +636,7 @@ instance and permissions. Typically, it involves:
 Please refer to the specific documentation of your GitLab instance for
 detailed instructions.
 
-## 7.5 View Your Package Website
+## 7.6 View Your Package Website
 
 After building the site, your package website will be available at the
 following link:

@@ -73,7 +73,6 @@ install.packages('usethis')
 install.packages('pkgdown')
 ```
 
-
 <!-- # <a name="rstudiopackages"></a> -->
 
 # Creating a basic R package 
@@ -469,7 +468,7 @@ Gitignore:
 
 # Building a website 
 
-In this tutorial, you'll learn how to create a YAML configuration file (_pkgdown.yml) for your R package using usethis::use_pkgdown(). We'll also cover the importance of YAML files and the steps to build and view your package website.
+In this section, you'll learn how to create a YAML configuration file (_pkgdown.yml) for your R package using usethis::use_pkgdown(). We'll also cover the importance of YAML files and the steps to build and view your package website.
 
 ## Create YAML Configuration
 
@@ -518,7 +517,7 @@ pkgdown::build_site()
 
 This command creates a `docs/` directory containing HTML files for your website.
 
-2.2 Commit Changes to Git
+## Commit Changes to Git
 
 Before building the website, commit the changes to your Git repository:
 
