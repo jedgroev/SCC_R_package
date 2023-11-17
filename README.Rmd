@@ -396,73 +396,64 @@ usethis::use_build_ignore(c("yourfolder1", "yourfolder2", "yourfile"))
     5. install package 
 
 ---
+
 <!-- # <a name="GIT"></a> -->
 
 
-# GIT
+# Git
 
-This tutorial provides a step-by-step guide on how to set up a new project on GitHub or GitLab, link it to your RStudio, and use basic Git commands for version control.
+This section provides a step-by-step guide on how to set up a new project on GitHub or GitLab, link it to your RStudio, and use basic Git commands for version control. The example is using GitHub but is very similar for GitLab.
+
+---
 
 ## Create a New Project on GitHub/GitLab
 
-    Navigate to the GitHub or GitLab website.
-    Create a new project and choose a name (YourPackageName).
-    Decide whether you want the repository to be public or private.
-    Include a README file during the initialization process.
-    Provide optionally already a license and description
+Navigate to the GitHub or GitLab website and create a new project with a given name (`YourPackageName`). Include a README file during the initialization process and specify other optional settings (public/private, licensing, description).
 
 ![New Repository](./fig/GITHUB.png) 
 ![Create Repository](./fig/CreateRepo.png) 
 
 ## Copy the Repository Link
 
-    Copy the HTTP link of your repository. 
-    For example, https://github.com/<YourAccount>/<YourPackageName>.git.
+Copy the HTTP link of your repository `https://github.com/<YourAccount>/<YourPackageName>.git` as shown in the figure below.
 
 ![Copy Repository](./fig/copyrepo.png) 
 
-
 ## Set Up the Project in RStudio
 
-    Open RStudio and choose File -> New Project -> Version Control -> Git.
-    Paste the Repository URL and specify the Project directory name (e.g., `YourPackageName`) 
+Open RStudio and choose `File -> New Project -> Version Control -> Git`. Paste the Repository URL and specify the Project directory name (`YourPackageName`).
 
 ![Copy Repository](./fig/clonegitreporstudio.png) 
 
-## Make Changes and Commit
+## Make Changes, Commit and Push
 
-    Open the `README` file in RStudio.
-    Make a change (e.g., add a new line).
-    Use the Git pane in RStudio to commit the changes.
-          Stage the changes.
-          Add a meaningful commit message.
-          Click `Commit`
+Open the `README` file in RStudio and make a change (e.g., add a new line).
 
-## Push Changes to Git
+Use the Git pane in RStudio to commit the changes.
 
-    Push the committed changes to the GitHub or GitLab repository. 
-    Use the `Push` button in the Git pane.
+* Stage the changes and add a meaningful commit message.
+* Click `Commit`
+* Click `Push` to push the committed changes to the git repository. 
 
 ---
 
-Important Git Commands:
+
+**Important Git Commands:**
 
     Commit: Use commit to submit changes to Git.
     Push: Use push to push the committed changes to Git.
     Pull: Use pull to fetch changes made in GitHub or GitLab.
 
-Tips and Tricks:
+**Tips and Tricks:**
 
     Commit changes with meaningful descriptions to provide context.
     Regularly pull changes to keep your local copy updated.
     Utilize branches for feature development or bug fixing.
 
-
-Gitignore:
+**Gitignore:**
 
     Don't forget to create a .gitignore file to specify files and directories that Git should ignore.
 
----
 
 <!-- # <a name="www"></a> -->
 

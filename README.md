@@ -29,25 +29,33 @@ R package
         Package](#63-install-and-load-your-package)
       - [6.4 Buildignore](#64-buildignore)
       - [6.5 Exercise](#65-exercise)
-  - [7 Building a website](#7-building-a-website)
-      - [7.1 Create YAML Configuration](#71-create-yaml-configuration)
-      - [7.2 Edit the \_pkgdown.yml File](#72-edit-the-_pkgdownyml-file)
-      - [7.3 Build Your Package Website](#73-build-your-package-website)
-      - [7.4 Commit Changes to Git](#74-commit-changes-to-git)
-      - [7.5 Activate Pages on GitHub and
-        GitLab](#75-activate-pages-on-github-and-gitlab)
-          - [7.5.1 GitHub Pages
-            Activation](#751-github-pages-activation)
-          - [7.5.2 GitLab Pages
-            Activation](#752-gitlab-pages-activation)
-      - [7.6 View Your Package Website](#76-view-your-package-website)
-  - [8 Large File Support](#8-large-file-support)
-      - [8.1 Set up LFS](#81-set-up-lfs)
-      - [8.2 Select file types](#82-select-file-types)
-      - [8.3 Check .gitattributes](#83-check-gitattributes)
-  - [9 Shortcuts](#9-shortcuts)
-  - [10 EXTRA](#10-extra)
-      - [10.1 todor](#101-todor)
+  - [7 Git](#7-git)
+      - [7.1 Create a New Project on
+        GitHub/GitLab](#71-create-a-new-project-on-githubgitlab)
+      - [7.2 Copy the Repository Link](#72-copy-the-repository-link)
+      - [7.3 Set Up the Project in
+        RStudio](#73-set-up-the-project-in-rstudio)
+      - [7.4 Make Changes, Commit and
+        Push](#74-make-changes-commit-and-push)
+  - [8 Building a website](#8-building-a-website)
+      - [8.1 Create YAML Configuration](#81-create-yaml-configuration)
+      - [8.2 Edit the \_pkgdown.yml File](#82-edit-the-_pkgdownyml-file)
+      - [8.3 Build Your Package Website](#83-build-your-package-website)
+      - [8.4 Commit Changes to Git](#84-commit-changes-to-git)
+      - [8.5 Activate Pages on GitHub and
+        GitLab](#85-activate-pages-on-github-and-gitlab)
+          - [8.5.1 GitHub Pages
+            Activation](#851-github-pages-activation)
+          - [8.5.2 GitLab Pages
+            Activation](#852-gitlab-pages-activation)
+      - [8.6 View Your Package Website](#86-view-your-package-website)
+  - [9 Large File Support](#9-large-file-support)
+      - [9.1 Set up LFS](#91-set-up-lfs)
+      - [9.2 Select file types](#92-select-file-types)
+      - [9.3 Check .gitattributes](#93-check-gitattributes)
+  - [10 Shortcuts](#10-shortcuts)
+  - [11 EXTRA](#11-extra)
+      - [11.1 todor](#111-todor)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -523,34 +531,84 @@ usethis::use_build_ignore(c("yourfolder1", "yourfolder2", "yourfile"))
     4. build package and search for the zipped file
     5. install package 
 
-Important Git Commands:
+-----
+
+<!-- # <a name="GIT"></a> -->
+
+# 7 Git
+
+This section provides a step-by-step guide on how to set up a new
+project on GitHub or GitLab, link it to your RStudio, and use basic Git
+commands for version control. The example is using GitHub but is very
+similar for GitLab.
+
+-----
+
+## 7.1 Create a New Project on GitHub/GitLab
+
+Navigate to the GitHub or GitLab website and create a new project with a
+given name (`YourPackageName`). Include a README file during the
+initialization process and specify other optional settings
+(public/private, licensing, description).
+
+![New Repository](./fig/GITHUB.png) ![Create
+Repository](./fig/CreateRepo.png)
+
+## 7.2 Copy the Repository Link
+
+Copy the HTTP link of your repository
+`https://github.com/<YourAccount>/<YourPackageName>.git` as shown in the
+figure below.
+
+![Copy Repository](./fig/copyrepo.png)
+
+## 7.3 Set Up the Project in RStudio
+
+Open RStudio and choose `File -> New Project -> Version Control -> Git`.
+Paste the Repository URL and specify the Project directory name
+(`YourPackageName`).
+
+![Copy Repository](./fig/clonegitreporstudio.png)
+
+## 7.4 Make Changes, Commit and Push
+
+Open the `README` file in RStudio and make a change (e.g., add a new
+line).
+
+Use the Git pane in RStudio to commit the changes.
+
+  - Stage the changes and add a meaningful commit message.
+  - Click `Commit`
+  - Click `Push` to push the committed changes to the git repository.
+
+-----
+
+**Important Git Commands:**
 
     Commit: Use commit to submit changes to Git.
     Push: Use push to push the committed changes to Git.
     Pull: Use pull to fetch changes made in GitHub or GitLab.
 
-Tips and Tricks:
+**Tips and Tricks:**
 
     Commit changes with meaningful descriptions to provide context.
     Regularly pull changes to keep your local copy updated.
     Utilize branches for feature development or bug fixing.
 
-Gitignore:
+**Gitignore:**
 
     Don't forget to create a .gitignore file to specify files and directories that Git should ignore.
 
------
-
 <!-- # <a name="www"></a> -->
 
-# 7 Building a website
+# 8 Building a website
 
 In this section, you’ll learn how to create a YAML configuration file
 (\_pkgdown.yml) for your R package using usethis::use\_pkgdown(). We’ll
 also cover the importance of YAML files and the steps to build and view
 your package website.
 
-## 7.1 Create YAML Configuration
+## 8.1 Create YAML Configuration
 
 Run the following command to create the \_pkgdown.yml file:
 
@@ -561,7 +619,7 @@ usethis::use_pkgdown()
 This command creates a basic YAML configuration file in your package
 directory.
 
-## 7.2 Edit the \_pkgdown.yml File
+## 8.2 Edit the \_pkgdown.yml File
 
 Open the generated \_pkgdown.yml file and customize it according to your
 preferences. This file contains settings for your package website,
@@ -584,7 +642,7 @@ navbar:
 Adjust the destination and url fields with your GitLab or github
 username and repository name.
 
-## 7.3 Build Your Package Website
+## 8.3 Build Your Package Website
 
 Ensure your package has a DESCRIPTION file and a README file. If not,
 run:
@@ -601,7 +659,7 @@ pkgdown::build_site()
 This command creates a `docs/` directory containing HTML files for your
 website.
 
-## 7.4 Commit Changes to Git
+## 8.4 Commit Changes to Git
 
 Before building the website, commit the changes to your Git repository:
 
@@ -613,9 +671,9 @@ usethis::use_git_commit(message = "Add pkgdown configuration and setup")
 Alternatively, commit using the approach as described in the GIT
 section.
 
-## 7.5 Activate Pages on GitHub and GitLab
+## 8.5 Activate Pages on GitHub and GitLab
 
-### 7.5.1 GitHub Pages Activation
+### 8.5.1 GitHub Pages Activation
 
     Go to your GitHub repository.
     Navigate to the "Settings" tab.
@@ -623,7 +681,7 @@ section.
     Set the "Source" branch to main or master (whichever branch you are using).
     Confirm the activation.
 
-### 7.5.2 GitLab Pages Activation
+### 8.5.2 GitLab Pages Activation
 
 The activation process for GitLab Pages can vary based on your GitLab
 instance and permissions. Typically, it involves:
@@ -636,7 +694,7 @@ instance and permissions. Typically, it involves:
 Please refer to the specific documentation of your GitLab instance for
 detailed instructions.
 
-## 7.6 View Your Package Website
+## 8.6 View Your Package Website
 
 After building the site, your package website will be available at the
 following link:
@@ -650,7 +708,7 @@ repository name.
 
 <!-- # <a name="LFS"></a> -->
 
-# 8 Large File Support
+# 9 Large File Support
 
 Large file support comes in handy if you would like to include large
 files in your package without versioning. This means that every time a
@@ -659,7 +717,7 @@ previous changes. To allow LFS navigate to
 ([https://git-lfs.com/)\\\[https://git-lfs.com/\\](https://git-lfs.com/\)\\%5Bhttps://git-lfs.com/\\)\]
 to download and install the git LFS extension.
 
-## 8.1 Set up LFS
+## 9.1 Set up LFS
 
 Once downloaded and installed, set up Git LFS for your user account by
 running:
@@ -668,7 +726,7 @@ running:
 
 You only need to run this once per user account.
 
-## 8.2 Select file types
+## 9.2 Select file types
 
 In each Git repository where you want to use Git LFS, select the file
 types you’d like Git LFS to manage (or directly edit your
@@ -677,7 +735,7 @@ anytime.
 
     git lfs track "*.html"
 
-## 8.3 Check .gitattributes
+## 9.3 Check .gitattributes
 
 Now make sure .gitattributes is tracked:
 
@@ -685,7 +743,7 @@ Now make sure .gitattributes is tracked:
 
 <!-- # <a name="shortcuts"></a> -->
 
-# 9 Shortcuts
+# 10 Shortcuts
 
 | MacOS / Windows                                                                                                                                   | R command             | Rstudio Menu                         |
 | :------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------- | :----------------------------------- |
@@ -696,9 +754,9 @@ Now make sure .gitattributes is tracked:
 | <kbd>command</kbd> + <kbd>shift</kbd> + <kbd>C</kbd> <br/> <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>C</kbd>                                      |                       | Code -\> Comment/Uncomment Lines     |
 | <kbd>option</kbd> + <kbd>shift</kbd> + <kbd>command</kbd> + <kbd>R</kbd> <br/> <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>R</kbd> |                       | Code -\> Insert Roxygen Skeleton     |
 
-# 10 EXTRA
+# 11 EXTRA
 
-## 10.1 todor
+## 11.1 todor
 
 ``` r
 install.packages('todor')
