@@ -1,235 +1,707 @@
+R package
+================
+
+  - [1 Introduction](#1-introduction)
+      - [1.1 Rstudio panels](#11-rstudio-panels)
+      - [1.2 Packages](#12-packages)
+  - [2 Creating a basic R package](#2-creating-a-basic-r-package)
+      - [2.1 Create the package repository
+        structure](#21-create-the-package-repository-structure)
+      - [2.2 Adding functions](#22-adding-functions)
+      - [2.3 Load R package](#23-load-r-package)
+      - [2.4 Exercise](#24-exercise)
+  - [3 Document with Roxygen](#3-document-with-roxygen)
+      - [3.1 Navigate to functions.R](#31-navigate-to-functionsr)
+      - [3.2 Document your functions](#32-document-your-functions)
+      - [3.3 Document package](#33-document-package)
+      - [3.4 Exercise](#34-exercise)
+  - [4 Add Data](#4-add-data)
+      - [4.1 Create data-raw directory](#41-create-data-raw-directory)
+      - [4.2 Navigate to DATASET.R](#42-navigate-to-datasetr)
+      - [4.3 Edit DATASET.R](#43-edit-datasetr)
+      - [4.4 Document your dataset](#44-document-your-dataset)
+      - [4.5 Exercise](#45-exercise)
+  - [5 Add Vignettes](#5-add-vignettes)
+  - [6 Build](#6-build)
+      - [6.1 Check Your Package](#61-check-your-package)
+      - [6.2 Build Your Package](#62-build-your-package)
+      - [6.3 Install and Load Your
+        Package](#63-install-and-load-your-package)
+      - [6.4 Buildignore](#64-buildignore)
+      - [6.5 Exercise](#65-exercise)
+  - [7 Building a website](#7-building-a-website)
+      - [7.1 Create YAML Configuration](#71-create-yaml-configuration)
+      - [7.2 Edit the \_pkgdown.yml File](#72-edit-the-_pkgdownyml-file)
+      - [7.3 Build Your Package Website](#73-build-your-package-website)
+      - [7.4 Activate Pages on GitHub and
+        GitLab](#74-activate-pages-on-github-and-gitlab)
+          - [7.4.1 GitHub Pages
+            Activation](#741-github-pages-activation)
+          - [7.4.2 GitLab Pages
+            Activation](#742-gitlab-pages-activation)
+      - [7.5 View Your Package Website](#75-view-your-package-website)
+  - [8 Large File Support](#8-large-file-support)
+      - [8.1 Set up LFS](#81-set-up-lfs)
+      - [8.2 Select file types](#82-select-file-types)
+      - [8.3 Check .gitattributes](#83-check-gitattributes)
+  - [9 Shortcuts](#9-shortcuts)
+  - [10 EXTRA](#10-extra)
+      - [10.1 todor](#101-todor)
+      - [10.2 Useful Links](#102-useful-links)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# SCC\_R\_package
+<!-- ## Table of Contents -->
 
-<!-- badges: start -->
+<!-- [Introduction](#introduction) </br> -->
 
-<!-- badges: end -->
+<!-- [Before starting](#beforestarting) </br> -->
 
-The goal of SCC\_R\_package is to …
+<!-- 1. [Creating a basic R package](#basicpackage) </br> -->
 
-## Installation
+<!-- 2. [Roxygen: Document R package ](#documentroxygen) </br> -->
 
-You can install the released version of SCC\_R\_package from
-[CRAN](https://CRAN.R-project.org) with:
+<!-- 3. [Data](#data) </br> -->
 
-``` r
-install.packages("SCCTempConverter")
-```
+<!-- 4. [Vignettes](#vignettes) </br> -->
 
-And the development version from [GitHub](https://github.com/) with:
+<!-- 5. [Build](#build) </br> -->
 
-``` r
-# install.packages("devtools")
-devtools::install_github("jedgroev/SCC_R_package")
-```
+<!-- 6. [GIT](#GIT) </br> -->
 
-## Example
+<!-- 7. [Build a website](#www) </br> -->
 
-<!-- This is a basic example which shows you how to solve a common problem: -->
+<!-- 8. [Large File Support](#LFS) </br> -->
 
-<!-- ```{r example} -->
+<!-- 9. [Shortcuts](#shortcuts) -->
 
-<!-- library(SCCTempConverter) -->
+<!-- OVERVIEW  -->
 
-<!-- ## basic example code -->
+<!-- 1. Create package repository structure  -->
 
-<!-- ``` -->
+<!-- 2. Create and dfunctions in ./R/functions.R -->
 
-<!-- What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so: -->
+<!-- 3. Document Add Roxygen tags to function  -->
 
-<!-- ```{r cars} -->
+<!-- 4. Document  -->
 
-<!-- summary(cars) -->
+<!-- 5. Load package  -->
 
-<!-- ``` -->
+<!-- # <a name="introduction"></a> -->
 
-<!-- You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/master/examples>. -->
+# 1 Introduction
 
-<!-- You can also embed plots, for example: -->
+R packages give you a structure to organize your code (and data) in a
+structured and standardized manner. In essence, an R package is a
+hyper-organized R-project of functions. A first tip, whether you want to
+create an R package or not, it is always a good idea to organize
+analyses that are part of a single work-package (e.g. publication,
+presentation) into an R-project (and to use functions for tasks that can
+be repeated). A prerequisite to facilitate creating an R package is
+basic knowledge of rstudio-GUI. While R-studio is not necessary to
+create an R package, it really makes it much easier.
 
-<!-- ```{r pressure, echo = FALSE} -->
+<!-- # <a name="beforestarting"></a> -->
 
-<!-- plot(pressure) -->
+Before digging into the subject here is an overview of the rstudio GUI
+and a list of necessary packages that will help you with building your
+first R package.
 
-<!-- ``` -->
+## 1.1 Rstudio panels
 
-<!-- In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN. -->
+  - **editor**
+  - **console**, terminal, R markdown, jobs
+  - **files**, plots, packages, help, viewer
+  - **environment**, history, connections, **build**, **git**, tutorial
+
+![figure](./fig/README_editor.png)
+
+## 1.2 Packages
+
+Install the following two quintessential packages that will make your
+life much easier.
 
 ``` r
 install.packages('devtools')
-install.packages('todor')
+install.packages('usethis')
 install.packages('pkgdown')
 ```
 
-## 1\. Making a basic R-package (without github/gitlab)
+<!-- # <a name="rstudiopackages"></a> -->
 
-Manually make:
+# 2 Creating a basic R package
 
-1)  Package Directory (SCC\_R\_package)
-2)  R-directory (SCC\_R\_package/R)
-3)  Functions (SCC\_R\_package/R/functions.R)
-4)  Description-file (SCC\_R\_package/DESCRIPTION)
-5)  Load package
+In this section, we’ll guide you through the process of creating a basic
+R package using the `devtools` package.
+
+## 2.1 Create the package repository structure
+
+To initiate your R package, start by creating the necessary directory
+structure.
+
+In the RStudio menu, navigate to `File -> New Project -> New Directory
+-> R package -> name` and replace “name” with the desired name for your
+package.
+
+``` r
+devtools::create("~/SCCRpackage")
+#usethis::create_package('~/SCCRpackage')
+```
+
+## 2.2 Adding functions
+
+Once your package structure is set up, you can add functions to it. Open
+an R script in the `R/` directory and include your desired functions.
+Here, we’ve added two temperature conversion functions as examples:
+
+``` r
+F_to_C <- function(F_temp){
+    C_temp <- (F_temp - 32) * 5/9;
+    return(C_temp);
+}
+
+C_to_F <- function(C_temp){
+    F_temp <- (C_temp * 9/5) + 32;
+    return(F_temp);
+}
+```
+
+## 2.3 Load R package
+
+To test your functions within the package, load it into your R
+environment using one of the following methods:
+
+  - Execute `devtools::load_all()` in the R console.
+  - Use the shortcut <kbd>command</kbd> + <kbd>tab</kbd> + <kbd>L</kbd>.
+  - Navigate to `Build -> Load All` in the RStudio menu.
 
 <!-- end list -->
 
 ``` r
-devtools::load_all() # shortcut: cmd tab l
+devtools::load_all() 
 ```
+
+## 2.4 Exercise
+
+-----
+
+    Create a minimum viable R package manually including:
+    
+    1) Package Directory (SCC_R_package)
+    2) R-directory (SCC_R_package/R)
+    3) Functions (SCC_R_package/R/functions.R)
+    4) Description-file (SCC_R_package/DESCRIPTION)
+    
+    Then, load package with load_all(), try functions and check documentation (e.g., ?F_to_C)
+
+-----
+
+In the upcoming sections, we’ll delve into further details on
+documentation, testing, and package building. This initial setup lays
+the foundation for developing a well-organized and functional R package.
+
+<!-- # <a name="documentroxygen"></a> -->
+
+# 3 Document with Roxygen
+
+Roxygen is a system for documenting R code within the source code
+itself, and it uses special tags to provide metadata about functions and
+other elements of the code.
+
+**Table 1.** Roxygen Tags Overview ordered by importance and relevance
+
+| tag            | description                                                                                                                                                             |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| @title         | Provides a short, one-line description of the purpose of the documented object.                                                                                         |
+| @description   | Offers a more detailed description of the documented object. This tag is important for providing comprehensive information about the function or object.                |
+| @param         | Documents function parameters. Each parameter is typically documented using a separate @param tag, providing details such as the parameter name, type, and description. |
+| @return        | Describes the return value of a function. Similar to @param, it includes details like the type of the return value and a description.                                   |
+| @examples      | Provides examples of how to use the function or code block. Examples are crucial for users to understand how to apply the code in practical situations.                 |
+| @author        | Specifies the author(s) of the code. It’s a good practice to give credit to those who contributed to the code.                                                          |
+| @seealso       | Links to other related functions or documentation. This tag helps users find additional relevant information.                                                           |
+| @details       | Offers additional details or information that might be important for users to understand the inner workings or special considerations related to the documented object. |
+| @import        | Indicates the packages that need to be imported for the code to run successfully. This is important for users to know which dependencies are required.                  |
+| @source        | Specifies the source of the code. This can be useful for giving credit or referencing the origin of the code.                                                           |
+| @references    | Provides references or citations related to the code. This is especially important for academic or research-oriented code.                                              |
+| @export        | Indicates that a particular function or object should be exported when the package is loaded. This is essential for package development.                                |
+| @keywords      | Specifies keywords related to the code. This can aid in searching and categorizing the code.                                                                            |
+| @inheritParams | Indicates that the documented function inherits parameters from another function. This can be useful when functions share similar parameter sets.                       |
+
+These tags are commonly used in Roxygen documentation, but the
+importance of each tag may vary depending on the specific context and
+use case. It’s generally recommended to include the essential tags such
+as @title, @description, @param, and @return, and then add additional
+tags based on the needs of the documentation.
+
+In most cases adding @examples to the documentation of your R package
+functions is recommended. Including illustrative examples not only
+improves the usability of your package but also aids users in
+understanding how to effectively implement your functions in their own
+workflows. Moreover, it also helps you to remember the functionality of
+your function.
+
+## 3.1 Navigate to functions.R
+
+Navigate to the following directory `./R/functions.R` within the R
+package you just created.
+
+## 3.2 Document your functions
+
+Document these functions by adding roxygen tags (@param, @return,
+@examples, @export, @details, @description, @name) to each function.
+
+To quickly add the roxygen skeleton, put the pointer within a function
+and then:
+
+  - Use the shortcut <kbd>option</kbd> + <kbd>tab</kbd> +
+    <kbd>command</kbd> + <kbd>R</kbd>.
+  - Navigate to `Code -> Insert Roxygen Skeleton` in the RStudio menu.
+
+<!-- end list -->
 
 ``` r
-F <- 20 
-C <- F_to_C(F)
-F <- C_to_F(C)
-
-?F_to_C
+#' @Title C_to_F
+#'
+#' @param C_temp 
+#'
+#' @return 
+#'
+#' @export
+#'
+#' @examples
+#' # Convert Celcius to Farenheit
+#' F <- C_to_F(20)
+#'
+#' # Convert Celcius to Farenheit, but avoid running it for tests
+#' \dontrun {
+#' F <- C_to_F(20)
+#' }
+#' 
+#'
+C_to_F <- function(C_temp){
+    F_temp <- (C_temp * 9/5) + 32;
+    return(F_temp);
+}
 ```
 
-## 2\. Document R-package
+-----
 
-Navigate to R-functions 1) Add roxygen2 tags (@param, @return,
-@examples, @export, @details, @description, @name) 2) Document package
-3) navigate through package
+**NOTE**
+
+The `\dontrun` tag is useful when an example should not be automatically
+executed. This can be necessary for examples that may have side effects,
+such as downloading large datasets or creating time-consuming
+computations. How to Use not run: simply include `\dontrun{}` in the
+example you want to exclude from automatic execution.
+
+-----
+
+## 3.3 Document package
+
+The function `document()` will automatically create the function
+documentation. Use load all to load your package locally
 
 ``` r
 devtools::document()
 devtools::load_all()
 ```
 
+If you inspect the function F\_to\_C you will see that documentation is
+now available.
+
 ``` r
-?F_to_C
+?C_to_F
 ```
 
-## 3\. data
+-----
 
-## 4\. github
+## 3.4 Exercise
 
-1)  go to github or gitlab
-2)  create a new project and add already a readme
-3)  copy the http link
-    (e.g. <https://github.com/jedgroev/SCC_R_package.git>)
-4)  create a new project in rstudio (choose git-project)
+``` 
+We have now documented the function C_to_F by adding the roxygen tags. 
+Use the same approach to document the F_to_C function.     
+```
 
-<!-- end list -->
+-----
 
-1.  specify the directory to the package (SCC\_R\_package)
-2.  paste the http link
-    (<https://github.com/jedgroev/SCC_R_package.git>)
-3.  press pull (README is added)
-4.  make a change in the README
-5.  commit / push changes to git
+<!-- # <a name="data"></a> -->
 
-Important git commands: - commit: use commit to submit changes to git. -
-push: use push to push the commited changes to git. - pull: use pull to
-pull changes made in github.
+# 4 Add Data
 
-Tips and tricks: - commit changes with a meaningfull description
+Adding data to your package enhances its functionality and ensures that
+users have access to essential datasets. The `use_data()` and
+`use_data_raw()` functions simplify the workflow of saving package data
+in the correct format. Follow these steps to include datasets in your
+package:
 
-## 5\. Large File Support
+## 4.1 Create data-raw directory
 
-## 
+The `use_data_raw()` function sets up a directory named `data-raw` and
+includes a template R-script, `DATASET.R`.
 
-## 4\. build a website
+``` r
+usethis::use_data_raw() 
+```
 
-### github
+## 4.2 Navigate to DATASET.R
 
-1)  navigate to <https://github.com/><username>/<project>/settings/pages
-2)  specify the branch (e.g. main / master)
-3)  in rstudio run
+Go to the `data-raw` directory and open the script `DATASET.R`.
+
+## 4.3 Edit DATASET.R
+
+Edit `DATASET.R` to load and format the dataset, saving it as a suitable
+.rda file using the `usethis::use_data()` function.
+
+``` r
+# example of a created dataset 
+date <- as.Date('2023-09-01')
+timestamp <- seq(date,date + 30,1)
+celcius <- sample(seq(10,20,0.1),length(timestamp))
+temperatures <- data.frame(timestamp=timestamp,celcius=celcius)
+
+# create a data directory and store the rda file with use_data()
+usethis::use_data(temperatures, overwrite = TRUE)
+```
+
+## 4.4 Document your dataset
+
+In the `R/` directory, document your dataset using Roxygen tags. Include
+essential information such as @name, @description, @format, @source, and
+variable details. Good practice is to create an R script named `data` in
+which you document your datasets.
+
+``` r
+# example 
+#' name Prices of 50,000 round cut diamonds.
+#'
+#' A dataset containing the prices and other attributes of almost 54,000
+#' diamonds.
+#'
+#' @format A data frame with 53940 rows and 10 variables:
+#' \describe{
+#'   \item{price}{price, in US dollars}
+#'   \item{carat}{weight of the diamond, in carats}
+#' }
+#' @source \url{http://www.diamondse.info/}
+diamonds 
+```
+
+-----
+
+## 4.5 Exercise
+
+    Document above created `temperatures` data frame using the Roxygen-tags: 
+    @name, @description, @format and @source. 
+    
+    Make sure to describe each column of the data frame. 
+
+-----
+
+<!-- # <a name="vignettes"></a> -->
+
+# 5 Add Vignettes
+
+It is a good idea to add extra detailed documentation of the usage of
+the R package as vignettes. Vignettes are in essence R markdown files
+with a specific header. To extend your R package with vignettes use the
+function below.
+
+``` r
+usethis::use_vignette("test") 
+```
+
+<!-- # <a name="build"></a> -->
+
+# 6 Build
+
+Once your package is ready, you can build your package using
+`devtools::build()` which will create a tarball (a compressed archive)
+of your package in the `./pkg/` directory.
+
+Before building, it’s a good idea to check your package for common
+issues using `devtools::check()`. The latter function performs a series
+of checks to ensure that your package meets certain standards and is
+ready for distribution. These checks help ensure the overall quality,
+consistency, and compliance of your R package with best practices and
+standards. It’s recommended to address any issues reported during the
+`devtools::check()` process before submitting your package to CRAN or
+sharing it with others.
+
+Here are some of the key checks that `devtools::check()` performs:
+
+| check                         | description                                                                                                                                                                                                                                     |
+| :---------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| R CMD check                   | This is a comprehensive set of checks performed by the R CMD check command. It includes various sub-checks for code syntax, documentation, and package structure. It ensures that your package adheres to the standards set by the R community. |
+| R CMD build                   | Checks are made to ensure that your package can be successfully built into a tarball (compressed archive).                                                                                                                                      |
+| R CMD INSTALL                 | Installs your package locally to check for installation issues.                                                                                                                                                                                 |
+| Package dependencies          | Checks that the dependencies declared in the DESCRIPTION file are available and can be installed.                                                                                                                                               |
+| CRAN checks                   | Checks specific to CRAN (Comprehensive R Archive Network) submission requirements. These include checks for package licensing, proper use of URLs, and other guidelines specified by CRAN.                                                      |
+| Namespace checks              | Verifies that your package namespace is properly defined and does not have any conflicts.                                                                                                                                                       |
+| Code style and best practices | Checks for adherence to coding style conventions, as recommended by the R community.                                                                                                                                                            |
+| Documentation checks          | Verifies that the documentation is correctly formatted and that all exported functions are documented.                                                                                                                                          |
+| Examples checks               | Runs examples provided in the documentation to ensure they work as intended.                                                                                                                                                                    |
+| Vignette checks               | If your package includes vignettes, it checks that they can be built without errors.                                                                                                                                                            |
+| Unit tests                    | If you have unit tests in your package, they are executed to ensure that your functions work as expected.                                                                                                                                       |
+| License checks                | Verifies that your package has a valid license specified in the DESCRIPTION file.                                                                                                                                                               |
+| Encoding checks               | Checks that your source code files use a consistent and valid character encoding.                                                                                                                                                               |
+
+## 6.1 Check Your Package
+
+Check makes a list of checks to test the validity of your package. Use
+one of the following approaches to run the checks:
+
+  - Execute `devtools::check()` in the R console.
+  - Use the shortcut <kbd>tab</kbd> + <kbd>command</kbd> + <kbd>E</kbd>.
+  - Navigate to `Build -> Check Package` in the RStudio menu.
+  - Navigate to the `Build` tab and click `Check` in upper-right panel
 
 <!-- end list -->
 
 ``` r
-require(devtools)
-usethis::use_readme_rmd()
-usethis::use_news_md()
-usethis::use_vignette("test") 
+devtools::check()
+```
+
+Address any issues that arise during the checking process.
+
+## 6.2 Build Your Package
+
+Once your package is ready, you can build your package. Use one of the
+following approaches:
+
+  - Execute `devtools::build()` in the R console.
+  - Execute `R CMD build YourPackageName` from the directory in which
+    your package is stored, and `YourPackageName` is the R Package
+    directory name.
+  - Use the shortcut <kbd>command</kbd> + <kbd>shift</kbd> +
+    <kbd>B</kbd> or <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>B</kbd>
+  - Navigate to `Build -> Build Package` in the RStudio menu.
+
+<!-- end list -->
+
+``` r
+devtools::build()
+```
+
+This will create a tarball (a compressed archive) of your package in the
+./pkg/ directory.
+
+## 6.3 Install and Load Your Package
+
+You can install your package locally for testing using:
+
+``` r
+install.packages("path/to/YourPackageName_x.y.z.tar.gz", repos = NULL, type = "source")
+```
+
+Replace “path/to/YourPackageName\_x.y.z.tar.gz” with the actual path to
+your package tarball.
+
+## 6.4 Buildignore
+
+To ignore including certain files or directories modify the buildignore
+file. This will exclude specific directories when building your package.
+For instance, you might want to ignore the raw-data directory, since you
+will not need it for the functioning of your R package.
+
+``` r
+usethis::use_build_ignore(c("yourfolder1", "yourfolder2", "yourfile"))
+```
+
+## 6.5 Exercise
+
+-----
+
+    1. Adjust the buildignore file and add the raw-data directory
+    2. Exclude any other directory that is not necessary 
+    3. perform checks and correct issues
+    4. build package and search for the zipped file
+    5. install package 
+
+Important Git Commands:
+
+    Commit: Use commit to submit changes to Git.
+    Push: Use push to push the committed changes to Git.
+    Pull: Use pull to fetch changes made in GitHub or GitLab.
+
+Tips and Tricks:
+
+    Commit changes with meaningful descriptions to provide context.
+    Regularly pull changes to keep your local copy updated.
+    Utilize branches for feature development or bug fixing.
+
+Gitignore:
+
+    Don't forget to create a .gitignore file to specify files and directories that Git should ignore.
+
+-----
+
+<!-- # <a name="www"></a> -->
+
+# 7 Building a website
+
+In this tutorial, you’ll learn how to create a YAML configuration file
+(\_pkgdown.yml) for your R package using usethis::use\_pkgdown(). We’ll
+also cover the importance of YAML files and the steps to build and view
+your package website.
+
+## 7.1 Create YAML Configuration
+
+Run the following command to create the \_pkgdown.yml file:
+
+``` r
 usethis::use_pkgdown()
-# usethis::use_github_links()
+```
+
+This command creates a basic YAML configuration file in your package
+directory.
+
+## 7.2 Edit the \_pkgdown.yml File
+
+Open the generated \_pkgdown.yml file and customize it according to your
+preferences. This file contains settings for your package website,
+including the destination, URL, and navigation bar.
+
+Example \_pkgdown.yml:
+
+``` yml
+destination: public
+url: https://<USERNAME>.gitlab.io/<REPOSITORYNAME>/
+development:
+  mode: auto
+
+navbar:
+  right:
+    - icon: fa-gitlab
+      href: https://gitlab.com/<USERNAME>/<REPOSITORYNAME>
+```
+
+Adjust the destination and url fields with your GitLab or github
+username and repository name.
+
+## 7.3 Build Your Package Website
+
+Ensure your package has a DESCRIPTION file and a README file. If not,
+run:
+
+    usethis::use_description() 
+    usethis::use_readme_rmd()
+
+Then, generate your package website using:
+
+``` r
 pkgdown::build_site()
 ```
 
-# 
+This command creates a `docs/` directory containing HTML files for your
+website.
 
-### 1.1. create directory
+2.2 Commit Changes to Git
 
-``` r
-dir.create('SCC_R_package')
-```
-
-### 1.2. create R-directory
+Before building the website, commit the changes to your Git repository:
 
 ``` r
-dir.create('R')
+usethis::use_git()
+usethis::use_git_commit(message = "Add pkgdown configuration and setup")
 ```
 
-### 1.3. create functions
+Alternatively, commit using the approach as described in the GIT
+section.
+
+## 7.4 Activate Pages on GitHub and GitLab
+
+### 7.4.1 GitHub Pages Activation
+
+    Go to your GitHub repository.
+    Navigate to the "Settings" tab.
+    Scroll down to the "GitHub Pages" section.
+    Set the "Source" branch to main or master (whichever branch you are using).
+    Confirm the activation.
+
+### 7.4.2 GitLab Pages Activation
+
+The activation process for GitLab Pages can vary based on your GitLab
+instance and permissions. Typically, it involves:
+
+    Go to your GitLab repository.
+    Navigate to the "Settings" or "CI / CD" section.
+    Look for "Pages" settings.
+    Configure the Pages settings, including the source branch.
+
+Please refer to the specific documentation of your GitLab instance for
+detailed instructions.
+
+## 7.5 View Your Package Website
+
+After building the site, your package website will be available at the
+following link:
+
+``` php
+https://<USERNAME>.github.io/<REPOSITORYNAME>/
+```
+
+Replace <USERNAME> and <REPOSITORYNAME> with your GitHub username and
+repository name.
+
+<!-- # <a name="LFS"></a> -->
+
+# 8 Large File Support
+
+Large file support comes in handy if you would like to include large
+files in your package without versioning. This means that every time a
+LFS-object is changed, a new version is uploaded without tracking
+previous changes. To allow LFS navigate to
+([https://git-lfs.com/)\\\[https://git-lfs.com/\\](https://git-lfs.com/\)\\%5Bhttps://git-lfs.com/\\)\]
+to download and install the git LFS extension.
+
+## 8.1 Set up LFS
+
+Once downloaded and installed, set up Git LFS for your user account by
+running:
+
+    git lfs install
+
+You only need to run this once per user account.
+
+## 8.2 Select file types
+
+In each Git repository where you want to use Git LFS, select the file
+types you’d like Git LFS to manage (or directly edit your
+.gitattributes). You can configure additional file extensions at
+anytime.
+
+    git lfs track "*.html"
+
+## 8.3 Check .gitattributes
+
+Now make sure .gitattributes is tracked:
+
+    git add .gitattributes
+
+<!-- # <a name="shortcuts"></a> -->
+
+# 9 Shortcuts
+
+| MacOS / Windows                                                                                                                                   | R command             | Rstudio Menu                         |
+| :------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------- | :----------------------------------- |
+| <kbd>command</kbd> + <kbd>shift</kbd> + <kbd>E</kbd> <br/> <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>E</kbd>                                      | devtools::check()     | build -\> Check Package              |
+| <kbd>command</kbd> + <kbd>shift</kbd> + <kbd>B</kbd> <br/> <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>B</kbd>                                      | devtools::build()     | build -\> Build Source Package       |
+| <kbd>command</kbd> + <kbd>shift</kbd> + <kbd>L</kbd> <br/> <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>L</kbd>                                      | devtools::load\_all() | build -\> load all                   |
+| <kbd>ctrl</kbd> + <kbd>option</kbd> + <kbd>M</kbd> <br/> <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>M</kbd>                                          |                       | Tools -\> Version Control -\> Commit |
+| <kbd>command</kbd> + <kbd>shift</kbd> + <kbd>C</kbd> <br/> <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>C</kbd>                                      |                       | Code -\> Comment/Uncomment Lines     |
+| <kbd>option</kbd> + <kbd>shift</kbd> + <kbd>command</kbd> + <kbd>R</kbd> <br/> <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>R</kbd> |                       | Code -\> Insert Roxygen Skeleton     |
+
+# 10 EXTRA
+
+## 10.1 todor
 
 ``` r
-f <- '
-F_to_C <- function(F_temp){
-    C_temp <- (F_temp - 32) * 5/9;
-    return(C_temp);
-}
-
-C_to_F <- function(C_temp){
-    F_temp <- (C_temp * 9/5) + 32;
-    return(F_temp);
-}
-'
-
-write.table(f, file = './R/functions.R', sep = '', row.names=F,col.names=F, quote=FALSE)
+install.packages('todor')
 ```
 
-### 1.4. create description file
+## 10.2 Useful Links
 
-``` r
-d <- '
-Package: SCCTempConverter
-Type: Package
-Title: Temperature Conversion Package for Demonstration
-Version: 0.0.1.0
-'
+Links to be added in the repository
 
-write.table(d, file = 'DESCRIPTION', sep = '', row.names=F,col.names=F, quote=FALSE)
-```
-
-## 2\. adding documentation
-
-### 2.1.
-
-``` r
-f <- "
-#' Fahrenheit conversion
-#'
-#' Convert degrees Fahrenheit temperatures to degrees Celsius
-#' @param F_temp The temperature in degrees Fahrenheit
-#' @return The temperature in degrees Celsius
-#' @examples 
-#' temp1 <- F_to_C(50);
-#' temp2 <- F_to_C( c(50, 63, 23) );
-#' @export
-F_to_C <- function(F_temp){
-    C_temp <- (F_temp - 32) * 5/9;
-    return(C_temp);
-}
-
-#' Celsius conversion
-#'
-#' Convert degrees Celsius temperatures to degrees Fahrenheit
-#' @param C_temp The temperature in degrees Celsius
-#' @return The temperature in degrees Fahrenheit
-#' @examples 
-#' temp1 <- C_to_F(22);
-#' temp2 <- C_to_F( c(-2, 12, 23) );
-#' @export
-C_to_F <- function(C_temp){
-    F_temp <- (C_temp * 9/5) + 32;
-    return(F_temp);
-}
-"
-
-write.table(f, file = 'R/functions.R', sep = '', row.names=F,col.names=F, quote=FALSE)
-```
+  - <https://carpentries-incubator.github.io/Reproducible-Publications-with-RStudio/01-introduction/index.html>
+  - <https://swcarpentry.github.io/r-novice-gapminder/>
+  - <https://swcarpentry.github.io/r-novice-gapminder/10-functions/index.html>

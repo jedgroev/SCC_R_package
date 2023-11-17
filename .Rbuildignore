@@ -3,3 +3,6 @@
 ^pkgdown$
 ^README\.Rmd$
 ^notebook*
+^data-raw$
+^.*\.Rproj$
+^\.Rproj\.user$
