@@ -47,7 +47,6 @@ R package
   - [9 Shortcuts](#9-shortcuts)
   - [10 EXTRA](#10-extra)
       - [10.1 todor](#101-todor)
-      - [10.2 Useful Links](#102-useful-links)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -103,9 +102,9 @@ create an R package, it really makes it much easier.
 
 <!-- # <a name="beforestarting"></a> -->
 
-Before digging into the subject here is an overview of the rstudio GUI
-and a list of necessary packages that will help you with building your
-first R package.
+Before digging into the subject here is an short overview of the rstudio
+GUI and a list of necessary packages that will help you with building
+your first R package.
 
 ## 1.1 Rstudio panels
 
@@ -115,6 +114,12 @@ first R package.
   - **environment**, history, connections, **build**, **git**, tutorial
 
 ![figure](./fig/README_editor.png)
+
+To learn more in detail about project management with R studio and
+rmarkdown please have a look at the following pressuse resources:
+
+  - <https://carpentries-incubator.github.io/Reproducible-Publications-with-RStudio/>
+  - <https://swcarpentry.github.io/r-novice-gapminder/>
 
 ## 1.2 Packages
 
@@ -697,11 +702,3 @@ Now make sure .gitattributes is tracked:
 ``` r
 install.packages('todor')
 ```
-
-## 10.2 Useful Links
-
-Links to be added in the repository
-
-  - <https://carpentries-incubator.github.io/Reproducible-Publications-with-RStudio/01-introduction/index.html>
-  - <https://swcarpentry.github.io/r-novice-gapminder/>
-  - <https://swcarpentry.github.io/r-novice-gapminder/10-functions/index.html>
