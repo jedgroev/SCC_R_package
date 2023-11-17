@@ -313,7 +313,7 @@ example you want to exclude from automatic execution.
 ## 3.3 Document package
 
 The function `document()` will automatically create the function
-documentation. Use load all to load your package locally
+documentation. Use `load_all()` to load your package locally
 
 ``` r
 devtools::document()

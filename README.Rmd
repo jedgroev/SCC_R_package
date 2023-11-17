@@ -214,7 +214,7 @@ The `\dontrun` tag is useful when an example should not be automatically execute
 
 ## Document package 
 
-The function `document()` will automatically create the function documentation. Use load all to load your package locally
+The function `document()` will automatically create the function documentation. Use `load_all()` to load your package locally
 
 ```r
 devtools::document()
