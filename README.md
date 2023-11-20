@@ -567,10 +567,10 @@ usethis::use_build_ignore(c("yourfolder1", "yourfolder2", "yourfile"))
 
 # 7 Git
 
-This section provides a step-by-step guide on how to set up a new
-project on GitHub or GitLab, link it to your RStudio, and use basic Git
-commands for version control. The example is using GitHub but is very
-similar for GitLab.
+This section provides a step-by-step guide on how to (1) set up a new
+project on GitHub or GitLab, (2) link it to your RStudio, and (3) use
+basic git commands for version control. The example is using GitHub but
+is very similar for GitLab.
 
 -----
 
