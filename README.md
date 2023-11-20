@@ -11,7 +11,7 @@ R package
       - [2.3 Load R package](#23-load-r-package)
       - [2.4 Exercise](#24-exercise)
   - [3 Document with Roxygen](#3-document-with-roxygen)
-      - [3.1 Navigate to functions.R](#31-navigate-to-functionsr)
+      - [3.1 Navigate to functions](#31-navigate-to-functions)
       - [3.2 Document your functions](#32-document-your-functions)
       - [3.3 Document package](#33-document-package)
       - [3.4 Exercise](#34-exercise)
@@ -37,6 +37,7 @@ R package
         RStudio](#73-set-up-the-project-in-rstudio)
       - [7.4 Make Changes, Commit and
         Push](#74-make-changes-commit-and-push)
+      - [7.5 Exercise](#75-exercise)
   - [8 Building a website](#8-building-a-website)
       - [8.1 Create YAML Configuration](#81-create-yaml-configuration)
       - [8.2 Edit the \_pkgdown.yml File](#82-edit-the-_pkgdownyml-file)
@@ -186,7 +187,7 @@ To test your functions within the package, load it into your R
 environment using one of the following methods:
 
   - Execute `devtools::load_all()` in the R console.
-  - Use the shortcut <kbd>command</kbd> + <kbd>shift</kbd> +
+  - Use the shortcut <kbd>command/ctrl</kbd> + <kbd>shift</kbd> +
     <kbd>L</kbd>.
   - Navigate to `Build -> Load All` in the RStudio menu.
 
@@ -206,8 +207,8 @@ devtools::load_all()
     2) R-directory (SCC_R_package/R)
     3) Functions (SCC_R_package/R/functions.R)
     4) Description-file (SCC_R_package/DESCRIPTION)
-    
-    Then, load package with load_all(), try functions and check documentation (e.g., ?F_to_C)
+    5) Load package with load_all()
+    6) Try the functions and check documentation (e.g., ?F_to_C)
 
 -----
 
@@ -219,9 +220,38 @@ the foundation for developing a well-organized and functional R package.
 
 # 3 Document with Roxygen
 
-Roxygen is a system for documenting R code within the source code
-itself, and it uses special tags to provide metadata about functions and
-other elements of the code.
+When seeking assistance in R, the use of a question mark followed by a
+function (e.g., `?table`) guides you to a help page containing
+documentation for that specific function. This documentation is a
+crucial component that you need to create when constructing your own
+package, and it can be seamlessly added using Roxygen tags. To
+illustrate, consider the following straightforward example:
+
+``` r
+#' @title C_to_F
+#' 
+#' @description function to convert Celcius to Farenheit
+#'
+#' @param C_temp numeric value expressing the temperature in degrees Celcius 
+#'
+#' @return 
+#'
+#' @export
+#'
+C_to_F <- function(C_temp){
+    F_temp <- (C_temp * 9/5) + 32;
+    return(F_temp);
+}
+```
+
+The tags are identified by `#'` followed by the `@` symbol and the tag
+identifier (e.g. `#' @title`). It is generally advisable to include
+essential tags such as @title, @description, @param, and @return, and
+then add supplementary tags as per the documentation needs (see Table 1
+for an overview). After incorporating Roxygen tags, the `document()`
+function can be used to generate the requisite manual, embedding the
+documentation. See [below](#31-navigate-to-functions) for a step-by-step
+guide.
 
 **Table 1.** Roxygen Tags Overview ordered by importance and relevance
 
@@ -242,20 +272,7 @@ other elements of the code.
 | @keywords      | Specifies keywords related to the code. This can aid in searching and categorizing the code.                                                                            |
 | @inheritParams | Indicates that the documented function inherits parameters from another function. This can be useful when functions share similar parameter sets.                       |
 
-These tags are commonly used in Roxygen documentation, but the
-importance of each tag may vary depending on the specific context and
-use case. It’s generally recommended to include the essential tags such
-as @title, @description, @param, and @return, and then add additional
-tags based on the needs of the documentation.
-
-In most cases adding @examples to the documentation of your R package
-functions is recommended. Including illustrative examples not only
-improves the usability of your package but also aids users in
-understanding how to effectively implement your functions in their own
-workflows. Moreover, it also helps you to remember the functionality of
-your function.
-
-## 3.1 Navigate to functions.R
+## 3.1 Navigate to functions
 
 Navigate to the following directory `./R/functions.R` within the R
 package you just created.
@@ -268,8 +285,8 @@ Document these functions by adding roxygen tags (@param, @return,
 To quickly add the roxygen skeleton, put the pointer within a function
 and then:
 
-  - Use the shortcut <kbd>option</kbd> + <kbd>shift</kbd> +
-    <kbd>command</kbd> + <kbd>R</kbd>.
+  - Use the shortcut <kbd>option/alt</kbd> + <kbd>shift</kbd> +
+    <kbd>command/ctrl</kbd> + <kbd>R</kbd>.
   - Navigate to `Code -> Insert Roxygen Skeleton` in the RStudio menu.
 
 <!-- end list -->
@@ -313,11 +330,22 @@ example you want to exclude from automatic execution.
 
 ## 3.3 Document package
 
-The function `document()` will automatically create the function
-documentation. Use `load_all()` to load your package locally
+The function `document()` will automatically create the documentation of
+the function.
+
+  - Execute `devtools::document()` in the R console.
+  - Use the shortcut <kbd>command/ctrl</kbd> + <kbd>shift</kbd> +
+    <kbd>B</kbd>.
+
+<!-- end list -->
 
 ``` r
 devtools::document()
+```
+
+Finally, use `load_all()` to reload your package locally
+
+``` r
 devtools::load_all()
 ```
 
@@ -466,7 +494,7 @@ Check makes a list of checks to test the validity of your package. Use
 one of the following approaches to run the checks:
 
   - Execute `devtools::check()` in the R console.
-  - Use the shortcut <kbd>shift</kbd> + <kbd>command</kbd> +
+  - Use the shortcut <kbd>shift</kbd> + <kbd>command/ctrl</kbd> +
     <kbd>E</kbd>.
   - Navigate to `Build -> Check Package` in the RStudio menu.
   - Navigate to the `Build` tab and click `Check` in upper-right panel
@@ -488,8 +516,8 @@ following approaches:
   - Execute `R CMD build YourPackageName` from the directory in which
     your package is stored, and `YourPackageName` is the R Package
     directory name.
-  - Use the shortcut <kbd>command</kbd> + <kbd>shift</kbd> +
-    <kbd>B</kbd> or <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>B</kbd>
+  - Use the shortcut <kbd>command/ctrl</kbd> + <kbd>shift</kbd> +
+    <kbd>B</kbd>
   - Navigate to `Build -> Build Package` in the RStudio menu.
 
 <!-- end list -->
@@ -600,6 +628,25 @@ Use the Git pane in RStudio to commit the changes.
 **Gitignore:**
 
     Don't forget to create a .gitignore file to specify files and directories that Git should ignore.
+
+-----
+
+## 7.5 Exercise
+
+<div style="background-color: #f0f0f0; padding: 10px;">
+
+1.  Create a git repository in github/gitlab
+2.  Clone it locally
+3.  Create the R package as in [section
+    2](#2-creating-a-basic-r-package)
+4.  Commit and Push the R package
+5.  Check your git-repository in github/gitlab
+6.  Document your package as in [section 3](#3-document-with-roxygen)
+7.  Commit and Push the documented R package
+
+</div>
+
+-----
 
 <!-- # <a name="www"></a> -->
 
@@ -747,14 +794,15 @@ Now make sure .gitattributes is tracked:
 
 # 10 Shortcuts
 
-| MacOS / Windows                                                                                                                                   | R command             | Rstudio Menu                         |
-| :------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------- | :----------------------------------- |
-| <kbd>command</kbd> + <kbd>shift</kbd> + <kbd>E</kbd> <br/> <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>E</kbd>                                      | devtools::check()     | build -\> Check Package              |
-| <kbd>command</kbd> + <kbd>shift</kbd> + <kbd>B</kbd> <br/> <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>B</kbd>                                      | devtools::build()     | build -\> Build Source Package       |
-| <kbd>command</kbd> + <kbd>shift</kbd> + <kbd>L</kbd> <br/> <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>L</kbd>                                      | devtools::load\_all() | build -\> load all                   |
-| <kbd>ctrl</kbd> + <kbd>option</kbd> + <kbd>M</kbd> <br/> <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>M</kbd>                                          |                       | Tools -\> Version Control -\> Commit |
-| <kbd>command</kbd> + <kbd>shift</kbd> + <kbd>C</kbd> <br/> <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>C</kbd>                                      |                       | Code -\> Comment/Uncomment Lines     |
-| <kbd>option</kbd> + <kbd>shift</kbd> + <kbd>command</kbd> + <kbd>R</kbd> <br/> <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>shift</kbd> + <kbd>R</kbd> |                       | Code -\> Insert Roxygen Skeleton     |
+| MacOS / Windows                                                                   | R command             | Rstudio Menu                         |
+| :-------------------------------------------------------------------------------- | :-------------------- | :----------------------------------- |
+| <kbd>command/ctrl</kbd> + <kbd>shift</kbd> + <kbd>E</kbd>                         | devtools::check()     | build -\> Check Package              |
+| <kbd>command/ctrl</kbd> + <kbd>shift</kbd> + <kbd>B</kbd>                         | devtools::build()     | build -\> Build Source Package       |
+| <kbd>command/ctrl</kbd> + <kbd>shift</kbd> + <kbd>L</kbd>                         | devtools::load\_all() | build -\> load all                   |
+| <kbd>command/ctrl</kbd> + <kbd>shift</kbd> + <kbd>D</kbd>                         | devtools::document()  |                                      |
+| <kbd>command/ctrl</kbd> + <kbd>option/alt</kbd> + <kbd>M</kbd>                    |                       | Tools -\> Version Control -\> Commit |
+| <kbd>command/ctrl</kbd> + <kbd>shift</kbd> + <kbd>C</kbd>                         |                       | Code -\> Comment/Uncomment Lines     |
+| <kbd>option/alt</kbd> + <kbd>shift</kbd> + <kbd>command/ctrl</kbd> + <kbd>R</kbd> |                       | Code -\> Insert Roxygen Skeleton     |
 
 # 11 EXTRA
 

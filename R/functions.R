@@ -1,7 +1,7 @@
 
-#' Fahrenheit conversion
+#' @title Fahrenheit conversion
 #'
-#' Convert degrees Fahrenheit temperatures to degrees Celsius
+#' @description Convert degrees Fahrenheit temperatures to degrees Celsius
 #' @param F_temp The temperature in degrees Fahrenheit
 #' @return The temperature in degrees Celsius
 #' @examples 
@@ -12,10 +12,9 @@ F_to_C <- function(F_temp){
     C_temp <- (F_temp - 32) * 5/9;
     return(C_temp);
 }
-
-#' Celsius conversion
-#'
-#' Convert degrees Celsius temperatures to degrees Fahrenheit
+#' @title Celsius conversion
+#' 
+#' @description Convert degrees Celsius temperatures to degrees Fahrenheit
 #' @param C_temp The temperature in degrees Celsius
 #' @return The temperature in degrees Fahrenheit
 #' @examples 
@@ -26,6 +25,17 @@ C_to_F <- function(C_temp){
     F_temp <- (C_temp * 9/5) + 32;
     return(F_temp);
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
