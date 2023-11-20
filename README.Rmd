@@ -367,7 +367,7 @@ Check makes a list of checks to test the validity of your package. Use one of th
 * Execute `devtools::check()` in the R console.
 * Use the shortcut <kbd>shift</kbd> + <kbd>command/ctrl</kbd> + <kbd>E</kbd>.
 * Navigate to `Build -> Check Package` in the RStudio menu.
-* Navigate to the `Build` tab and click `Check` in upper-right panel
+* Navigate to the `Build` panel and click `Check` in upper-right panel
 
 ```r
 devtools::check()

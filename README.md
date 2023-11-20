@@ -497,7 +497,7 @@ one of the following approaches to run the checks:
   - Use the shortcut <kbd>shift</kbd> + <kbd>command/ctrl</kbd> +
     <kbd>E</kbd>.
   - Navigate to `Build -> Check Package` in the RStudio menu.
-  - Navigate to the `Build` tab and click `Check` in upper-right panel
+  - Navigate to the `Build` panel and click `Check` in upper-right panel
 
 <!-- end list -->
 
