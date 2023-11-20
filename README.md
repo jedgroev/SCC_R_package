@@ -186,7 +186,8 @@ To test your functions within the package, load it into your R
 environment using one of the following methods:
 
   - Execute `devtools::load_all()` in the R console.
-  - Use the shortcut <kbd>command</kbd> + <kbd>tab</kbd> + <kbd>L</kbd>.
+  - Use the shortcut <kbd>command</kbd> + <kbd>shift</kbd> +
+    <kbd>L</kbd>.
   - Navigate to `Build -> Load All` in the RStudio menu.
 
 <!-- end list -->
@@ -267,7 +268,7 @@ Document these functions by adding roxygen tags (@param, @return,
 To quickly add the roxygen skeleton, put the pointer within a function
 and then:
 
-  - Use the shortcut <kbd>option</kbd> + <kbd>tab</kbd> +
+  - Use the shortcut <kbd>option</kbd> + <kbd>shift</kbd> +
     <kbd>command</kbd> + <kbd>R</kbd>.
   - Navigate to `Code -> Insert Roxygen Skeleton` in the RStudio menu.
 
@@ -465,7 +466,8 @@ Check makes a list of checks to test the validity of your package. Use
 one of the following approaches to run the checks:
 
   - Execute `devtools::check()` in the R console.
-  - Use the shortcut <kbd>tab</kbd> + <kbd>command</kbd> + <kbd>E</kbd>.
+  - Use the shortcut <kbd>shift</kbd> + <kbd>command</kbd> +
+    <kbd>E</kbd>.
   - Navigate to `Build -> Check Package` in the RStudio menu.
   - Navigate to the `Build` tab and click `Check` in upper-right panel
 
