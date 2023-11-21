@@ -35,9 +35,10 @@ R package
       - [7.2 Copy the Repository Link](#72-copy-the-repository-link)
       - [7.3 Set Up the Project in
         RStudio](#73-set-up-the-project-in-rstudio)
-      - [7.4 Make Changes, Commit and
-        Push](#74-make-changes-commit-and-push)
-      - [7.5 Exercise](#75-exercise)
+      - [7.4 Modify gitignore file](#74-modify-gitignore-file)
+      - [7.5 Make Changes, Commit and
+        Push](#75-make-changes-commit-and-push)
+      - [7.6 Exercise](#76-exercise)
   - [8 Building a website](#8-building-a-website)
       - [8.1 Create YAML Configuration](#81-create-yaml-configuration)
       - [8.2 Edit the \_pkgdown.yml File](#82-edit-the-_pkgdownyml-file)
@@ -102,13 +103,13 @@ R package
 
 R packages give you a structure to organize your code (and data) in a
 structured and standardized manner. In essence, an R package is a
-hyper-organized R-project of functions. A first tip, whether you want to
-create an R package or not, it is always a good idea to organize
+hyper-organized R project of functions. A first tip, whether you want to
+create an R package or not, it is always a beneficial to organize
 analyses that are part of a single work-package (e.g. publication,
-presentation) into an R-project (and to use functions for tasks that can
+presentation) into an R project (and to use functions for tasks that can
 be repeated). A prerequisite to facilitate creating an R package is
-basic knowledge of rstudio-GUI. While R-studio is not necessary to
-create an R package, it really makes it much easier.
+basic knowledge of rstudio-GUI. While RStudio is not necessary to create
+an R package, it really makes it much easier.
 
 <!-- # <a name="beforestarting"></a> -->
 
@@ -125,8 +126,8 @@ your first R package.
 
 ![figure](./fig/README_editor.png)
 
-To learn more in detail about project management with R studio and
-rmarkdown please have a look at the following pressuse resources:
+To learn more in detail about project management with RStudio and
+Rmarkdown please have a look at the following precious resources:
 
   - <https://carpentries-incubator.github.io/Reproducible-Publications-with-RStudio/>
   - <https://swcarpentry.github.io/r-novice-gapminder/>
@@ -374,13 +375,15 @@ Use the same approach to document the F_to_C function.
 Adding data to your package enhances its functionality and ensures that
 users have access to essential datasets. The `use_data()` and
 `use_data_raw()` functions simplify the workflow of saving package data
-in the correct format. Follow these steps to include datasets in your
-package:
+in the correct format. Also for data sets various Roxygen tags can be
+used to add documentation. Follow these steps to include datasets in
+your package:
 
 ## 4.1 Create data-raw directory
 
 The `use_data_raw()` function sets up a directory named `data-raw` and
-includes a template R-script, `DATASET.R`.
+includes a template R-script, `DATASET.R`. This directory could also be
+used to add your original datasets.
 
 ``` r
 usethis::use_data_raw() 
@@ -567,12 +570,21 @@ usethis::use_build_ignore(c("yourfolder1", "yourfolder2", "yourfile"))
 
 # 7 Git
 
-This section provides a step-by-step guide on how to (1) set up a new
-project on GitHub or GitLab, (2) link it to your RStudio, and (3) use
-basic git commands for version control. The example is using GitHub but
-is very similar for GitLab.
+Imagine you have a piece of code, and you’re keen on tracking its
+changes without losing the original version. The conventional method
+involves saving scripts as new files, often labeled with indicators like
+‘v0’ or a timestamp. Git offers a more seamless way to version your code
+without the hassle of managing different version files manually. It not
+only tracks changes made to your files but also equips you with tools to
+document those changes. While Git’s initial development focused on code
+versioning, it’s versatile enough to handle smaller datasets. GitHub and
+GitLab support various text file formats (e.g., csv, fasta), making them
+ideal for versioning.
 
------
+This section unfolds a step-by-step guide to (1) initiate a new project
+on GitHub or GitLab, (2) integrate it with your RStudio, and (3) employ
+basic git commands for effective version control. Although the example
+uses GitHub, the process is nearly identical for GitLab.
 
 ## 7.1 Create a New Project on GitHub/GitLab
 
@@ -600,38 +612,54 @@ Paste the Repository URL and specify the Project directory name
 
 ![Copy Repository](./fig/clonegitreporstudio.png)
 
-## 7.4 Make Changes, Commit and Push
+## 7.4 Modify gitignore file
 
-Open the `README` file in RStudio and make a change (e.g., add a new
-line).
+Once you created a git project a file that is automatically created is
+the `.gitignore` in the root directory of your project. This is a file
+in which you can specify which files and directories that should be
+ignored and thus should not be versioned or hosted in Github or Gitlab.
 
-Use the Git pane in RStudio to commit the changes.
+## 7.5 Make Changes, Commit and Push
 
-  - Stage the changes and add a meaningful commit message.
-  - Click `Commit`
+Once you have cloned the git repository you have the tools to version
+the files in your R package. To test this we can make changes into the
+`README` file and submit them to github/gitlab from within RStudio.
+There are several ways to submit changes in RStudio:
+
+  - Use the shortcut <kbd>command/ctrl</kbd> + <kbd>option/alt</kbd> +
+    <kbd>M</kbd>
+  - Navigate to `Tools -> Version Control -> Commit` in the RStudio
+    menu.
+  - Navigate to the `Git` in upper-right panel in RStudio and click the
+    `Commit` button.
+
+A new window pops up in which you:
+
+  - Select the files to which you want to add the specific commit
+    message.
+  - Add a message to describe the changes.
+  - Click `Commit` to submit the changes to Git.
   - Click `Push` to push the committed changes to the git repository.
 
------
+Git can also be used from the terminal:
 
-**Important Git Commands:**
+``` shell
+git add <filename>
+git commit -m "commit message"
+git push <branchname>
+```
 
-    Commit: Use commit to submit changes to Git.
-    Push: Use push to push the committed changes to Git.
-    Pull: Use pull to fetch changes made in GitHub or GitLab.
-
-**Tips and Tricks:**
-
-    Commit changes with meaningful descriptions to provide context.
-    Regularly pull changes to keep your local copy updated.
-    Utilize branches for feature development or bug fixing.
+**NOTE:** It is recommended to have pushed your changes by the end of
+the day, or when you stop working on a project. Before you start, the
+next day/moment/moment always make sure to first `pull`, to fetch
+changes made in GitHub or GitLab. Like that you ensure that both the
+online and local version remain synchronized.
 
 **Gitignore:**
 
-    Don't forget to create a .gitignore file to specify files and directories that Git should ignore.
-
 -----
 
-## 7.5 Exercise
+## 7.6 Exercise
 
 <div style="background-color: #f0f0f0; padding: 10px;">
 
