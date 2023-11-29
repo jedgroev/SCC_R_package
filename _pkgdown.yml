@@ -1,0 +1,13 @@
+# _config.yml
+
+title: "My Website"
+description: "A sample website"
+baseurl: "jedgroev.github.io/SCC_R_package/"
+url: "jedgroev.github.io/SCC_R_package/"
+
+# Other configuration settings...
+
+# Specify HTML file (example)
+index_html: "README.html"
+# about_html: "about.html"
+# contact_html: "contact.html"
