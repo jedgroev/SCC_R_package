@@ -62,6 +62,7 @@ To learn more in detail about project management with RStudio and Rmarkdown plea
 
 * https://carpentries-incubator.github.io/Reproducible-Publications-with-RStudio/
 * https://swcarpentry.github.io/r-novice-gapminder/
+* https://www.markdownguide.org/basic-syntax/
 
 ## Packages 
 

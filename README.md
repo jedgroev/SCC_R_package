@@ -131,6 +131,7 @@ Rmarkdown please have a look at the following precious resources:
 
   - <https://carpentries-incubator.github.io/Reproducible-Publications-with-RStudio/>
   - <https://swcarpentry.github.io/r-novice-gapminder/>
+  - <https://www.markdownguide.org/basic-syntax/>
 
 ## 1.2 Packages
 
