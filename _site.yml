@@ -7,21 +7,21 @@ navbar:
     - text: Introduction
       href: https://jedgroev.github.io/SCC_R_package/#1_Introduction
     - text: Creating a basic R package
-      href: /#1_Introduction
+      href: https://jedgroev.github.io/SCC_R_package/#2_Creating_a_basic_R_package
     - text: Document with Roxygen
-      href: /#1_Introduction
+      href: https://jedgroev.github.io/SCC_R_package/#3_Document_with_Roxygen
     - text: Add data
       href: https://jedgroev.github.io/SCC_R_package/#4_Add_Data
     - text: Add vignettes
-      href: https://jedgroev.github.io/SCC_R_package/#5-add-vignettes
+      href: https://jedgroev.github.io/SCC_R_package/#5_Add_Vignettes
     - text: Build
-      href: https://jedgroev.github.io/SCC_R_package/#6-build
+      href: https://jedgroev.github.io/SCC_R_package/#6_Build
     - text: Git
-      href: https://jedgroev.github.io/SCC_R_package/#7-git
+      href: https://jedgroev.github.io/SCC_R_package/#7_Git
     - text: Building a website
-      href: https://jedgroev.github.io/SCC_R_package/#8-building-a-website
+      href: https://jedgroev.github.io/SCC_R_package/#8_Building_a_website
     - text: Large file support
-      href: https://jedgroev.github.io/SCC_R_package/#9-large-file-support
+      href: https://jedgroev.github.io/SCC_R_package/#9_Large_file_support_(LFS)
 output:
   html_document:
     theme: spacelab
