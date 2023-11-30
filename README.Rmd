@@ -343,7 +343,7 @@ Here are some of the key checks that `devtools::check()` performs:
 |License checks|  Verifies that your package has a valid license specified in the DESCRIPTION file. | 
 |Encoding checks| Checks that your source code files use a consistent and valid character encoding. | 
 
-## Check Your Package
+## Check your package
 
 Check makes a list of checks to test the validity of your package. Use one of the following approaches to run the checks: 
 
@@ -358,7 +358,7 @@ devtools::check()
 
 Address any issues that arise during the checking process.
 
-## Build Your Package
+## Build your package
 
 Once your package is ready, you can build your package. Use one of the following approaches: 
 
@@ -373,7 +373,7 @@ devtools::build()
 
 This will create a tarball (a compressed archive) of your package in the ./pkg/ directory.
 
-## Install and Load Your Package
+## Install and load your package
 
 You can install your package locally for testing using:
 
@@ -413,20 +413,20 @@ Imagine you have a piece of code, and you're keen on tracking its changes withou
 This section unfolds a step-by-step guide to (1) initiate a new project on GitHub or GitLab, (2) integrate it with your RStudio, and (3) employ basic git commands for effective version control. Although the example uses GitHub, the process is nearly identical for GitLab.
 
 
-## Create a New Project on GitHub/GitLab
+## Create a new repository
 
 Navigate to the GitHub or GitLab website and create a new project with a given name (`YourPackageName`). Include a README file during the initialization process and specify other optional settings (public/private, licensing, description).
 
 ![New Repository](./fig/GITHUB.png) 
 ![Create Repository](./fig/CreateRepo.png) 
 
-## Copy the Repository Link
+## Copy repository link
 
 Copy the HTTP link of your repository `https://github.com/<YourAccount>/<YourPackageName>.git` as shown in the figure below.
 
 ![Copy Repository](./fig/copyrepo.png) 
 
-## Set Up the Project in RStudio
+## Set up repository in RStudio
 
 Open RStudio and choose `File -> New Project -> Version Control -> Git`. Paste the Repository URL and specify the Project directory name (`YourPackageName`).
 
@@ -436,7 +436,7 @@ Open RStudio and choose `File -> New Project -> Version Control -> Git`. Paste t
 
 Once you created a git project a file that is automatically created is the `.gitignore` in the root directory of your project. This is a file in which you can specify which files and directories that should be ignored and thus should not be versioned or hosted in Github or Gitlab. 
 
-## Make Changes, Commit and Push
+## Make changes, commit and push
 
 Once you have cloned the git repository you have the tools to version the files in your R package. To test this we can make changes into the `README` file and submit them to github/gitlab from within RStudio. There are several ways to submit changes in RStudio: 
 
@@ -487,7 +487,7 @@ git push <branchname>
 
 In this section, you'll learn how to create a YAML configuration file (_pkgdown.yml) for your R package using usethis::use_pkgdown(). We'll also cover the importance of YAML files and the steps to build and view your package website.
 
-## Create YAML Configuration
+## Create YAML configuration
 
 Run the following command to create the _pkgdown.yml file:
 
@@ -497,7 +497,7 @@ usethis::use_pkgdown()
 
 This command creates a basic YAML configuration file in your package directory.
 
-## Edit the _pkgdown.yml File
+## Edit the _pkgdown.yml file
 
 Open the generated _pkgdown.yml file and customize it according to your preferences. This file contains settings for your package website, including the destination, URL, and navigation bar.
 
@@ -517,7 +517,7 @@ navbar:
 
 Adjust the destination and url fields with your GitLab or github username and repository name.
 
-## Build Your Package Website
+## Build your package website
 
 Ensure your package has a DESCRIPTION file and a README file. If not, run:
 
@@ -534,7 +534,7 @@ pkgdown::build_site()
 
 This command creates a `docs/` directory containing HTML files for your website.
 
-## Commit Changes to Git
+## Commit changes to Git
 
 Before building the website, commit the changes to your Git repository:
 
@@ -545,9 +545,9 @@ usethis::use_git_commit(message = "Add pkgdown configuration and setup")
 
 Alternatively, commit using the approach as described in the GIT section.
 
-## Activate Pages on GitHub and GitLab
+## Activate pages 
 
-### GitHub Pages Activation
+### GitHub pages activation
 
     Go to your GitHub repository.
     Navigate to the "Settings" tab.
@@ -555,7 +555,7 @@ Alternatively, commit using the approach as described in the GIT section.
     Set the "Source" branch to main or master (whichever branch you are using).
     Confirm the activation.
 
-### GitLab Pages Activation
+### GitLab pages activation
 
 The activation process for GitLab Pages can vary based on your GitLab instance and permissions. Typically, it involves:
 
@@ -566,7 +566,7 @@ The activation process for GitLab Pages can vary based on your GitLab instance a
 
 Please refer to the specific documentation of your GitLab instance for detailed instructions.
 
-## View Your Package Website
+## View your package website
 
 After building the site, your package website will be available at the following link:
 
@@ -577,7 +577,7 @@ Replace <USERNAME> and <REPOSITORYNAME> with your GitHub username and repository
 
 <!-- # <a name="LFS"></a> -->
 
-# Large File Support
+# Large file support (LFS)
 
 Large file support comes in handy if you would like to include large files in your package without versioning. This means that every time a LFS-object is changed, a new version is uploaded without tracking previous changes. To allow LFS navigate to (https://git-lfs.com/)[https://git-lfs.com/] to download and install the git LFS extension. 
 
