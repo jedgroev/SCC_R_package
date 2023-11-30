@@ -24,14 +24,10 @@ navbar:
       href: https://jedgroev.github.io/SCC_R_package/#9-large-file-support
 output:
   html_document:
-    theme: spacelab
-    highlight: haddock
-    css: html-md-01.css
-    fig_caption: no
-    number_sections: yes
     toc: yes
-    toc_float: no
-    collapsed: no
-    lib_dir: site_libs
-    self_contained: no
-output_dir: ~/docs
+    number_sections: yes
+    toc_float: yes
+    toc_collapsed: yes
+    toc_depth: 3
+    theme: lumen
+output_dir: ~
