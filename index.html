@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>R package</title>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; } /* Alert */
+code span.an { color: #008000; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #0000ff; } /* ControlFlow */
+code span.ch { color: #008080; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #008000; } /* Comment */
+code span.cv { color: #008000; } /* CommentVar */
+code span.do { color: #008000; } /* Documentation */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.im { } /* Import */
+code span.in { color: #008000; } /* Information */
+code span.kw { color: #0000ff; } /* Keyword */
+code span.op { } /* Operator */
+code span.ot { color: #ff4000; } /* Other */
+code span.pp { color: #ff4000; } /* Preprocessor */
+code span.sc { color: #008080; } /* SpecialChar */
+code span.ss { color: #008080; } /* SpecialString */
+code span.st { color: #008080; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #008080; } /* VerbatimString */
+code span.wa { color: #008000; font-weight: bold; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="html-md-01.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">R package</h1>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>R packages give you a structure to organize your code (and data) in a structured and standardized manner. In essence, an R package is a hyper-organized R project of functions. A first tip, whether you want to create an R package or not, it is always a beneficial to organize analyses that are part of a single work-package (e.g. publication, presentation) into an R project (and to use functions for tasks that can be repeated). A prerequisite to facilitate creating an R package is basic knowledge of rstudio-GUI. While RStudio is not necessary to create an R package, it really makes it much easier.</p>
+<!-- # <a name="beforestarting"></a> -->
+<p>Before digging into the subject here is an short overview of the rstudio GUI and a list of necessary packages that will help you with building your first R package.</p>
+<div id="rstudio-panels" class="section level2">
+<h2><span class="header-section-number">1.1</span> Rstudio panels</h2>
+<ul>
+<li><strong>editor</strong></li>
+<li><strong>console</strong>, terminal, R markdown, jobs</li>
+<li><strong>files</strong>, plots, packages, help, viewer</li>
+<li><strong>environment</strong>, history, connections, <strong>build</strong>, <strong>git</strong>, tutorial</li>
+</ul>
+<p><img src="fig/README_editor.png" alt="figure" /></p>
+<p>To learn more in detail about project management with RStudio and Rmarkdown please have a look at the following precious resources:</p>
+<ul>
+<li><a href="https://carpentries-incubator.github.io/Reproducible-Publications-with-RStudio/" class="uri">https://carpentries-incubator.github.io/Reproducible-Publications-with-RStudio/</a></li>
+<li><a href="https://swcarpentry.github.io/r-novice-gapminder/" class="uri">https://swcarpentry.github.io/r-novice-gapminder/</a></li>
+<li><a href="https://www.markdownguide.org/basic-syntax/" class="uri">https://www.markdownguide.org/basic-syntax/</a></li>
+</ul>
+</div>
+<div id="packages" class="section level2">
+<h2><span class="header-section-number">1.2</span> Packages</h2>
+<p>Install the following two quintessential packages that will make your life much easier.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">install.packages</span>(<span class="st">&#39;devtools&#39;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">install.packages</span>(<span class="st">&#39;usethis&#39;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">install.packages</span>(<span class="st">&#39;pkgdown&#39;</span>)</span></code></pre></div>
+<!-- # <a name="rstudiopackages"></a> -->
+</div>
+</div>
+<div id="creating-a-basic-r-package" class="section level1">
+<h1><span class="header-section-number">2</span> Creating a basic R package</h1>
+<p>In this section, we’ll guide you through the process of creating a basic R package using the <code>devtools</code> package.</p>
+<div id="create-the-package-repository-structure" class="section level2">
+<h2><span class="header-section-number">2.1</span> Create the package repository structure</h2>
+<p>To initiate your R package, start by creating the necessary directory structure.</p>
+<p>In the RStudio menu, navigate to <code>File -&gt; New Project -&gt; New Directory -&gt; R package -&gt; name</code> and replace “name” with the desired name for your package.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>devtools<span class="op">::</span><span class="kw">create</span>(<span class="st">&quot;~/SCCRpackage&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#usethis::create_package(&#39;~/SCCRpackage&#39;)</span></span></code></pre></div>
+</div>
+<div id="adding-functions" class="section level2">
+<h2><span class="header-section-number">2.2</span> Adding functions</h2>
+<p>Once your package structure is set up, you can add functions to it. Open an R script in the <code>R/</code> directory and include your desired functions. Here, we’ve added two temperature conversion functions as examples:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>F_to_C &lt;-<span class="st"> </span><span class="cf">function</span>(F_temp){</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    C_temp &lt;-<span class="st"> </span>(F_temp <span class="op">-</span><span class="st"> </span><span class="dv">32</span>) <span class="op">*</span><span class="st"> </span><span class="dv">5</span><span class="op">/</span><span class="dv">9</span>;</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    <span class="kw">return</span>(C_temp);</span>
+<span id="cb3-4"><a href="#cb3-4"></a>}</span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a>C_to_F &lt;-<span class="st"> </span><span class="cf">function</span>(C_temp){</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    F_temp &lt;-<span class="st"> </span>(C_temp <span class="op">*</span><span class="st"> </span><span class="dv">9</span><span class="op">/</span><span class="dv">5</span>) <span class="op">+</span><span class="st"> </span><span class="dv">32</span>;</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="kw">return</span>(F_temp);</span>
+<span id="cb3-9"><a href="#cb3-9"></a>}</span></code></pre></div>
+</div>
+<div id="load-r-package" class="section level2">
+<h2><span class="header-section-number">2.3</span> Load R package</h2>
+<p>To test your functions within the package, load it into your R environment using one of the following methods:</p>
+<ul>
+<li>Execute <code>devtools::load_all()</code> in the R console.</li>
+<li>Use the shortcut <kbd>command/ctrl</kbd> + <kbd>shift</kbd> + <kbd>L</kbd>.</li>
+<li>Navigate to <code>Build -&gt; Load All</code> in the RStudio menu.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>devtools<span class="op">::</span><span class="kw">load_all</span>() </span></code></pre></div>
+</div>
+<div id="exercise" class="section level2">
+<h2><span class="header-section-number">2.4</span> Exercise</h2>
+<hr />
+<pre><code>Create a minimum viable R package manually including:
+
+1) Package Directory (SCC_R_package)
+2) R-directory (SCC_R_package/R)
+3) Functions (SCC_R_package/R/functions.R)
+4) Description-file (SCC_R_package/DESCRIPTION)
+5) Load package with load_all()
+6) Try the functions and check documentation (e.g., ?F_to_C)</code></pre>
+<hr />
+<p>In the upcoming sections, we’ll delve into further details on documentation, testing, and package building. This initial setup lays the foundation for developing a well-organized and functional R package.</p>
+<!-- # <a name="documentroxygen"></a> -->
+</div>
+</div>
+<div id="document-with-roxygen" class="section level1">
+<h1><span class="header-section-number">3</span> Document with Roxygen</h1>
+<p>When seeking assistance in R, the use of a question mark followed by a function (e.g., <code>?table</code>) guides you to a help page containing documentation for that specific function. This documentation is a crucial component that you need to create when constructing your own package, and it can be seamlessly added using Roxygen tags. To illustrate, consider the following straightforward example:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#&#39; @title C_to_F</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">#&#39; </span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#&#39; @description function to convert Celcius to Farenheit</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&#39;</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&#39; @param C_temp numeric value expressing the temperature in degrees Celcius </span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="co">#&#39;</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&#39; @return </span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&#39;</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&#39; @export</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&#39;</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>C_to_F &lt;-<span class="st"> </span><span class="cf">function</span>(C_temp){</span>
+<span id="cb6-12"><a href="#cb6-12"></a>    F_temp &lt;-<span class="st"> </span>(C_temp <span class="op">*</span><span class="st"> </span><span class="dv">9</span><span class="op">/</span><span class="dv">5</span>) <span class="op">+</span><span class="st"> </span><span class="dv">32</span>;</span>
+<span id="cb6-13"><a href="#cb6-13"></a>    <span class="kw">return</span>(F_temp);</span>
+<span id="cb6-14"><a href="#cb6-14"></a>}</span></code></pre></div>
+<p>The tags are identified by <code>#'</code> followed by the <code>@</code> symbol and the tag identifier (e.g. <code>#' @title</code>). It is generally advisable to include essential tags such as <span class="citation">@title</span>, <span class="citation">@description</span>, <span class="citation">@param</span>, and <span class="citation">@return</span>, and then add supplementary tags as per the documentation needs (see Table 1 for an overview). After incorporating Roxygen tags, the <code>document()</code> function can be used to generate the requisite manual, embedding the documentation. See <a href="#31-navigate-to-functions">below</a> for a step-by-step guide.</p>
+<p><strong>Table 1.</strong> Roxygen Tags Overview ordered by importance and relevance</p>
+<table>
+<colgroup>
+<col width="31%" />
+<col width="68%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">tag</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="citation">@title</span></td>
+<td align="left">Provides a short, one-line description of the purpose of the documented object.</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="citation">@description</span></td>
+<td align="left">Offers a more detailed description of the documented object. This tag is important for providing comprehensive information about the function or object.</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="citation">@param</span></td>
+<td align="left">Documents function parameters. Each parameter is typically documented using a separate <span class="citation">@param</span> tag, providing details such as the parameter name, type, and description.</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="citation">@return</span></td>
+<td align="left">Describes the return value of a function. Similar to <span class="citation">@param</span>, it includes details like the type of the return value and a description.</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="citation">@examples</span></td>
+<td align="left">Provides examples of how to use the function or code block. Examples are crucial for users to understand how to apply the code in practical situations.</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="citation">@author</span></td>
+<td align="left">Specifies the author(s) of the code. It’s a good practice to give credit to those who contributed to the code.</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="citation">@seealso</span></td>
+<td align="left">Links to other related functions or documentation. This tag helps users find additional relevant information.</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="citation">@details</span></td>
+<td align="left">Offers additional details or information that might be important for users to understand the inner workings or special considerations related to the documented object.</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="citation">@import</span></td>
+<td align="left">Indicates the packages that need to be imported for the code to run successfully. This is important for users to know which dependencies are required.</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="citation">@source</span></td>
+<td align="left">Specifies the source of the code. This can be useful for giving credit or referencing the origin of the code.</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="citation">@references</span></td>
+<td align="left">Provides references or citations related to the code. This is especially important for academic or research-oriented code.</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="citation">@export</span></td>
+<td align="left">Indicates that a particular function or object should be exported when the package is loaded. This is essential for package development.</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="citation">@keywords</span></td>
+<td align="left">Specifies keywords related to the code. This can aid in searching and categorizing the code.</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="citation">@inheritParams</span></td>
+<td align="left">Indicates that the documented function inherits parameters from another function. This can be useful when functions share similar parameter sets.</td>
+</tr>
+</tbody>
+</table>
+<div id="navigate-to-functions" class="section level2">
+<h2><span class="header-section-number">3.1</span> Navigate to functions</h2>
+<p>Navigate to the following directory <code>./R/functions.R</code> within the R package you just created.</p>
+</div>
+<div id="document-your-functions" class="section level2">
+<h2><span class="header-section-number">3.2</span> Document your functions</h2>
+<p>Document these functions by adding roxygen tags (<span class="citation">@param</span>, <span class="citation">@return</span>, <span class="citation">@examples</span>, <span class="citation">@export</span>, <span class="citation">@details</span>, <span class="citation">@description</span>, <span class="citation">@name</span>) to each function.</p>
+<p>To quickly add the roxygen skeleton, put the pointer within a function and then:</p>
+<ul>
+<li>Use the shortcut <kbd>option/alt</kbd> + <kbd>shift</kbd> + <kbd>command/ctrl</kbd> + <kbd>R</kbd>.</li>
+<li>Navigate to <code>Code -&gt; Insert Roxygen Skeleton</code> in the RStudio menu.</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">#&#39; @Title C_to_F</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&#39;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&#39; @param C_temp </span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&#39;</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&#39; @return </span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&#39;</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&#39; @export</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&#39;</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&#39; @examples</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&#39; # Convert Celcius to Farenheit</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&#39; F &lt;- C_to_F(20)</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&#39;</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&#39; # Convert Celcius to Farenheit, but avoid running it for tests</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&#39; \dontrun {</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="co">#&#39; F &lt;- C_to_F(20)</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="co">#&#39; }</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="co">#&#39; </span></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="co">#&#39;</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a>C_to_F &lt;-<span class="st"> </span><span class="cf">function</span>(C_temp){</span>
+<span id="cb7-20"><a href="#cb7-20"></a>    F_temp &lt;-<span class="st"> </span>(C_temp <span class="op">*</span><span class="st"> </span><span class="dv">9</span><span class="op">/</span><span class="dv">5</span>) <span class="op">+</span><span class="st"> </span><span class="dv">32</span>;</span>
+<span id="cb7-21"><a href="#cb7-21"></a>    <span class="kw">return</span>(F_temp);</span>
+<span id="cb7-22"><a href="#cb7-22"></a>}</span></code></pre></div>
+<hr />
+<p><strong>NOTE</strong></p>
+<p>The <code>\dontrun</code> tag is useful when an example should not be automatically executed. This can be necessary for examples that may have side effects, such as downloading large datasets or creating time-consuming computations. How to Use not run: simply include <code>\dontrun{}</code> in the example you want to exclude from automatic execution.</p>
+<hr />
+</div>
+<div id="document-package" class="section level2">
+<h2><span class="header-section-number">3.3</span> Document package</h2>
+<p>The function <code>document()</code> will automatically create the documentation of the function.</p>
+<ul>
+<li>Execute <code>devtools::document()</code> in the R console.</li>
+<li>Use the shortcut <kbd>command/ctrl</kbd> + <kbd>shift</kbd> + <kbd>B</kbd>.</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>devtools<span class="op">::</span><span class="kw">document</span>()</span></code></pre></div>
+<p>Finally, use <code>load_all()</code> to reload your package locally</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>devtools<span class="op">::</span><span class="kw">load_all</span>()</span></code></pre></div>
+<p>If you inspect the function F_to_C you will see that documentation is now available.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>?C_to_F</span></code></pre></div>
+<hr />
+</div>
+<div id="exercise-1" class="section level2">
+<h2><span class="header-section-number">3.4</span> Exercise</h2>
+<pre><code>We have now documented the function C_to_F by adding the roxygen tags. 
+Use the same approach to document the F_to_C function.     </code></pre>
+<hr />
+<!-- # <a name="data"></a> -->
+</div>
+</div>
+<div id="add-data" class="section level1">
+<h1><span class="header-section-number">4</span> Add Data</h1>
+<p>Adding data to your package enhances its functionality and ensures that users have access to essential datasets. The <code>use_data()</code> and <code>use_data_raw()</code> functions simplify the workflow of saving package data in the correct format. Also for data sets various Roxygen tags can be used to add documentation. Follow these steps to include datasets in your package:</p>
+<div id="create-data-raw-directory" class="section level2">
+<h2><span class="header-section-number">4.1</span> Create data-raw directory</h2>
+<p>The <code>use_data_raw()</code> function sets up a directory named <code>data-raw</code> and includes a template R-script, <code>DATASET.R</code>. This directory could also be used to add your original datasets.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>usethis<span class="op">::</span><span class="kw">use_data_raw</span>() </span></code></pre></div>
+</div>
+<div id="navigate-to-dataset.r" class="section level2">
+<h2><span class="header-section-number">4.2</span> Navigate to DATASET.R</h2>
+<p>Go to the <code>data-raw</code> directory and open the script <code>DATASET.R</code>.</p>
+</div>
+<div id="edit-dataset.r" class="section level2">
+<h2><span class="header-section-number">4.3</span> Edit DATASET.R</h2>
+<p>Edit <code>DATASET.R</code> to load and format the dataset, saving it as a suitable .rda file using the <code>usethis::use_data()</code> function.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># example of a created dataset </span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>date &lt;-<span class="st"> </span><span class="kw">as.Date</span>(<span class="st">&#39;2023-09-01&#39;</span>)</span>
+<span id="cb13-3"><a href="#cb13-3"></a>timestamp &lt;-<span class="st"> </span><span class="kw">seq</span>(date,date <span class="op">+</span><span class="st"> </span><span class="dv">30</span>,<span class="dv">1</span>)</span>
+<span id="cb13-4"><a href="#cb13-4"></a>celcius &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">seq</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="fl">0.1</span>),<span class="kw">length</span>(timestamp))</span>
+<span id="cb13-5"><a href="#cb13-5"></a>temperatures &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">timestamp=</span>timestamp,<span class="dt">celcius=</span>celcius)</span>
+<span id="cb13-6"><a href="#cb13-6"></a></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="co"># create a data directory and store the rda file with use_data()</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>usethis<span class="op">::</span><span class="kw">use_data</span>(temperatures, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+</div>
+<div id="document-your-dataset" class="section level2">
+<h2><span class="header-section-number">4.4</span> Document your dataset</h2>
+<p>In the <code>R/</code> directory, document your dataset using Roxygen tags. Include essential information such as <span class="citation">@name</span>, <span class="citation">@description</span>, <span class="citation">@format</span>, <span class="citation">@source</span>, and variable details. Good practice is to create an R script named <code>data</code> in which you document your datasets.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># example </span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="co">#&#39; name Prices of 50,000 round cut diamonds.</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="co">#&#39;</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="co">#&#39; A dataset containing the prices and other attributes of almost 54,000</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="co">#&#39; diamonds.</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="co">#&#39;</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="co">#&#39; @format A data frame with 53940 rows and 10 variables:</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="co">#&#39; \describe{</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="co">#&#39;   \item{price}{price, in US dollars}</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="co">#&#39;   \item{carat}{weight of the diamond, in carats}</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="co">#&#39; }</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="co">#&#39; @source \url{http://www.diamondse.info/}</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a>diamonds </span></code></pre></div>
+<hr />
+</div>
+<div id="exercise-2" class="section level2">
+<h2><span class="header-section-number">4.5</span> Exercise</h2>
+<pre><code>Document above created `temperatures` data frame using the Roxygen-tags: 
+@name, @description, @format and @source. 
+
+Make sure to describe each column of the data frame. </code></pre>
+<hr />
+<!-- # <a name="vignettes"></a> -->
+</div>
+</div>
+<div id="add-vignettes" class="section level1">
+<h1><span class="header-section-number">5</span> Add Vignettes</h1>
+<p>It is a good idea to add extra detailed documentation of the usage of the R package as vignettes. Vignettes are in essence R markdown files with a specific header. To extend your R package with vignettes use the function below.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>usethis<span class="op">::</span><span class="kw">use_vignette</span>(<span class="st">&quot;test&quot;</span>) </span></code></pre></div>
+<!-- # <a name="build"></a> -->
+</div>
+<div id="build" class="section level1">
+<h1><span class="header-section-number">6</span> Build</h1>
+<p>Once your package is ready, you can build your package using <code>devtools::build()</code> which will create a tarball (a compressed archive) of your package in the <code>./pkg/</code> directory.</p>
+<p>Before building, it’s a good idea to check your package for common issues using <code>devtools::check()</code>. The latter function performs a series of checks to ensure that your package meets certain standards and is ready for distribution. These checks help ensure the overall quality, consistency, and compliance of your R package with best practices and standards. It’s recommended to address any issues reported during the <code>devtools::check()</code> process before submitting your package to CRAN or sharing it with others.</p>
+<p>Here are some of the key checks that <code>devtools::check()</code> performs:</p>
+<table>
+<colgroup>
+<col width="28%" />
+<col width="71%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">check</th>
+<th align="left">description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">R CMD check</td>
+<td align="left">This is a comprehensive set of checks performed by the R CMD check command. It includes various sub-checks for code syntax, documentation, and package structure. It ensures that your package adheres to the standards set by the R community.</td>
+</tr>
+<tr class="even">
+<td align="left">R CMD build</td>
+<td align="left">Checks are made to ensure that your package can be successfully built into a tarball (compressed archive).</td>
+</tr>
+<tr class="odd">
+<td align="left">R CMD INSTALL</td>
+<td align="left">Installs your package locally to check for installation issues.</td>
+</tr>
+<tr class="even">
+<td align="left">Package dependencies</td>
+<td align="left">Checks that the dependencies declared in the DESCRIPTION file are available and can be installed.</td>
+</tr>
+<tr class="odd">
+<td align="left">CRAN checks</td>
+<td align="left">Checks specific to CRAN (Comprehensive R Archive Network) submission requirements. These include checks for package licensing, proper use of URLs, and other guidelines specified by CRAN.</td>
+</tr>
+<tr class="even">
+<td align="left">Namespace checks</td>
+<td align="left">Verifies that your package namespace is properly defined and does not have any conflicts.</td>
+</tr>
+<tr class="odd">
+<td align="left">Code style and best practices</td>
+<td align="left">Checks for adherence to coding style conventions, as recommended by the R community.</td>
+</tr>
+<tr class="even">
+<td align="left">Documentation checks</td>
+<td align="left">Verifies that the documentation is correctly formatted and that all exported functions are documented.</td>
+</tr>
+<tr class="odd">
+<td align="left">Examples checks</td>
+<td align="left">Runs examples provided in the documentation to ensure they work as intended.</td>
+</tr>
+<tr class="even">
+<td align="left">Vignette checks</td>
+<td align="left">If your package includes vignettes, it checks that they can be built without errors.</td>
+</tr>
+<tr class="odd">
+<td align="left">Unit tests</td>
+<td align="left">If you have unit tests in your package, they are executed to ensure that your functions work as expected.</td>
+</tr>
+<tr class="even">
+<td align="left">License checks</td>
+<td align="left">Verifies that your package has a valid license specified in the DESCRIPTION file.</td>
+</tr>
+<tr class="odd">
+<td align="left">Encoding checks</td>
+<td align="left">Checks that your source code files use a consistent and valid character encoding.</td>
+</tr>
+</tbody>
+</table>
+<div id="check-your-package" class="section level2">
+<h2><span class="header-section-number">6.1</span> Check Your Package</h2>
+<p>Check makes a list of checks to test the validity of your package. Use one of the following approaches to run the checks:</p>
+<ul>
+<li>Execute <code>devtools::check()</code> in the R console.</li>
+<li>Use the shortcut <kbd>shift</kbd> + <kbd>command/ctrl</kbd> + <kbd>E</kbd>.</li>
+<li>Navigate to <code>Build -&gt; Check Package</code> in the RStudio menu.</li>
+<li>Navigate to the <code>Build</code> panel and click <code>Check</code> in upper-right panel</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>devtools<span class="op">::</span><span class="kw">check</span>()</span></code></pre></div>
+<p>Address any issues that arise during the checking process.</p>
+</div>
+<div id="build-your-package" class="section level2">
+<h2><span class="header-section-number">6.2</span> Build Your Package</h2>
+<p>Once your package is ready, you can build your package. Use one of the following approaches:</p>
+<ul>
+<li>Execute <code>devtools::build()</code> in the R console.</li>
+<li>Execute <code>R CMD build YourPackageName</code> from the directory in which your package is stored, and <code>YourPackageName</code> is the R Package directory name.</li>
+<li>Use the shortcut <kbd>command/ctrl</kbd> + <kbd>shift</kbd> + <kbd>B</kbd></li>
+<li>Navigate to <code>Build -&gt; Build Package</code> in the RStudio menu.</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>devtools<span class="op">::</span><span class="kw">build</span>()</span></code></pre></div>
+<p>This will create a tarball (a compressed archive) of your package in the ./pkg/ directory.</p>
+</div>
+<div id="install-and-load-your-package" class="section level2">
+<h2><span class="header-section-number">6.3</span> Install and Load Your Package</h2>
+<p>You can install your package locally for testing using:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;path/to/YourPackageName_x.y.z.tar.gz&quot;</span>, <span class="dt">repos =</span> <span class="ot">NULL</span>, <span class="dt">type =</span> <span class="st">&quot;source&quot;</span>)</span></code></pre></div>
+<p>Replace “path/to/YourPackageName_x.y.z.tar.gz” with the actual path to your package tarball.</p>
+</div>
+<div id="buildignore" class="section level2">
+<h2><span class="header-section-number">6.4</span> Buildignore</h2>
+<p>To ignore including certain files or directories modify the buildignore file. This will exclude specific directories when building your package. For instance, you might want to ignore the raw-data directory, since you will not need it for the functioning of your R package.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>usethis<span class="op">::</span><span class="kw">use_build_ignore</span>(<span class="kw">c</span>(<span class="st">&quot;yourfolder1&quot;</span>, <span class="st">&quot;yourfolder2&quot;</span>, <span class="st">&quot;yourfile&quot;</span>))</span></code></pre></div>
+</div>
+<div id="exercise-3" class="section level2">
+<h2><span class="header-section-number">6.5</span> Exercise</h2>
+<hr />
+<pre><code>1. Adjust the buildignore file and add the raw-data directory
+2. Exclude any other directory that is not necessary 
+3. perform checks and correct issues
+4. build package and search for the zipped file
+5. install package </code></pre>
+<hr />
+<!-- # <a name="GIT"></a> -->
+</div>
+</div>
+<div id="git" class="section level1">
+<h1><span class="header-section-number">7</span> Git</h1>
+<p>Imagine you have a piece of code, and you’re keen on tracking its changes without losing the original version. The conventional method involves saving scripts as new files, often labeled with indicators like ‘v0’ or a timestamp. Git offers a more seamless way to version your code without the hassle of managing different version files manually. It not only tracks changes made to your files but also equips you with tools to document those changes. While Git’s initial development focused on code versioning, it’s versatile enough to handle smaller datasets. GitHub and GitLab support various text file formats (e.g., csv, fasta), making them ideal for versioning.</p>
+<p>This section unfolds a step-by-step guide to (1) initiate a new project on GitHub or GitLab, (2) integrate it with your RStudio, and (3) employ basic git commands for effective version control. Although the example uses GitHub, the process is nearly identical for GitLab.</p>
+<div id="create-a-new-project-on-githubgitlab" class="section level2">
+<h2><span class="header-section-number">7.1</span> Create a New Project on GitHub/GitLab</h2>
+<p>Navigate to the GitHub or GitLab website and create a new project with a given name (<code>YourPackageName</code>). Include a README file during the initialization process and specify other optional settings (public/private, licensing, description).</p>
+<p><img src="fig/GITHUB.png" alt="New Repository" /> <img src="fig/CreateRepo.png" alt="Create Repository" /></p>
+</div>
+<div id="copy-the-repository-link" class="section level2">
+<h2><span class="header-section-number">7.2</span> Copy the Repository Link</h2>
+<p>Copy the HTTP link of your repository <code>https://github.com/&lt;YourAccount&gt;/&lt;YourPackageName&gt;.git</code> as shown in the figure below.</p>
+<p><img src="fig/copyrepo.png" alt="Copy Repository" /></p>
+</div>
+<div id="set-up-the-project-in-rstudio" class="section level2">
+<h2><span class="header-section-number">7.3</span> Set Up the Project in RStudio</h2>
+<p>Open RStudio and choose <code>File -&gt; New Project -&gt; Version Control -&gt; Git</code>. Paste the Repository URL and specify the Project directory name (<code>YourPackageName</code>).</p>
+<p><img src="fig/clonegitreporstudio.png" alt="Copy Repository" /></p>
+</div>
+<div id="modify-gitignore-file" class="section level2">
+<h2><span class="header-section-number">7.4</span> Modify gitignore file</h2>
+<p>Once you created a git project a file that is automatically created is the <code>.gitignore</code> in the root directory of your project. This is a file in which you can specify which files and directories that should be ignored and thus should not be versioned or hosted in Github or Gitlab.</p>
+</div>
+<div id="make-changes-commit-and-push" class="section level2">
+<h2><span class="header-section-number">7.5</span> Make Changes, Commit and Push</h2>
+<p>Once you have cloned the git repository you have the tools to version the files in your R package. To test this we can make changes into the <code>README</code> file and submit them to github/gitlab from within RStudio. There are several ways to submit changes in RStudio:</p>
+<ul>
+<li>Use the shortcut <kbd>command/ctrl</kbd> + <kbd>option/alt</kbd> + <kbd>M</kbd></li>
+<li>Navigate to <code>Tools -&gt; Version Control -&gt; Commit</code> in the RStudio menu.</li>
+<li>Navigate to the <code>Git</code> in upper-right panel in RStudio and click the <code>Commit</code> button.</li>
+</ul>
+<p>A new window pops up in which you:</p>
+<ul>
+<li>Select the files to which you want to add the specific commit message.</li>
+<li>Add a message to describe the changes.</li>
+<li>Click <code>Commit</code> to submit the changes to Git.</li>
+<li>Click <code>Push</code> to push the committed changes to the git repository.</li>
+</ul>
+<p>Git can also be used from the terminal:</p>
+<pre class="shell"><code>git add &lt;filename&gt;
+git commit -m &quot;commit message&quot;
+git push &lt;branchname&gt;</code></pre>
+<p><strong>NOTE:</strong> It is recommended to have pushed your changes by the end of the day, or when you stop working on a project. Before you start, the next day/moment/moment always make sure to first <code>pull</code>, to fetch changes made in GitHub or GitLab. Like that you ensure that both the online and local version remain synchronized.</p>
+<p><strong>Gitignore:</strong></p>
+<hr />
+</div>
+<div id="exercise-4" class="section level2">
+<h2><span class="header-section-number">7.6</span> Exercise</h2>
+<div style="background-color: #f0f0f0; padding: 10px;">
+<ol style="list-style-type: decimal">
+<li>Create a git repository in github/gitlab</li>
+<li>Clone it locally</li>
+<li>Create the R package as in <a href="#2-creating-a-basic-r-package">section 2</a></li>
+<li>Commit and Push the R package</li>
+<li>Check your git-repository in github/gitlab</li>
+<li>Document your package as in <a href="#3-document-with-roxygen">section 3</a></li>
+<li>Commit and Push the documented R package</li>
+</ol>
+</div>
+<hr />
+<!-- # <a name="www"></a> -->
+</div>
+</div>
+<div id="building-a-website" class="section level1">
+<h1><span class="header-section-number">8</span> Building a website</h1>
+<p>In this section, you’ll learn how to create a YAML configuration file (_pkgdown.yml) for your R package using usethis::use_pkgdown(). We’ll also cover the importance of YAML files and the steps to build and view your package website.</p>
+<div id="create-yaml-configuration" class="section level2">
+<h2><span class="header-section-number">8.1</span> Create YAML Configuration</h2>
+<p>Run the following command to create the _pkgdown.yml file:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>usethis<span class="op">::</span><span class="kw">use_pkgdown</span>()</span></code></pre></div>
+<p>This command creates a basic YAML configuration file in your package directory.</p>
+</div>
+<div id="edit-the-_pkgdown.yml-file" class="section level2">
+<h2><span class="header-section-number">8.2</span> Edit the _pkgdown.yml File</h2>
+<p>Open the generated _pkgdown.yml file and customize it according to your preferences. This file contains settings for your package website, including the destination, URL, and navigation bar.</p>
+<p>Example _pkgdown.yml:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode yml"><code class="sourceCode yaml"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">destination</span><span class="kw">:</span><span class="at"> public</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">url</span><span class="kw">:</span><span class="at"> https://&lt;USERNAME&gt;.gitlab.io/&lt;REPOSITORYNAME&gt;/</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="fu">development</span><span class="kw">:</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="at">  </span><span class="fu">mode</span><span class="kw">:</span><span class="at"> auto</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a></span>
+<span id="cb24-6"><a href="#cb24-6"></a><span class="fu">navbar</span><span class="kw">:</span></span>
+<span id="cb24-7"><a href="#cb24-7"></a><span class="at">  </span><span class="fu">right</span><span class="kw">:</span></span>
+<span id="cb24-8"><a href="#cb24-8"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> fa-gitlab</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a><span class="at">      </span><span class="fu">href</span><span class="kw">:</span><span class="at"> https://gitlab.com/&lt;USERNAME&gt;/&lt;REPOSITORYNAME&gt;</span></span></code></pre></div>
+<p>Adjust the destination and url fields with your GitLab or github username and repository name.</p>
+</div>
+<div id="build-your-package-website" class="section level2">
+<h2><span class="header-section-number">8.3</span> Build Your Package Website</h2>
+<p>Ensure your package has a DESCRIPTION file and a README file. If not, run:</p>
+<pre><code>usethis::use_description() 
+usethis::use_readme_rmd()</code></pre>
+<p>Then, generate your package website using:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>pkgdown<span class="op">::</span><span class="kw">build_site</span>()</span></code></pre></div>
+<p>This command creates a <code>docs/</code> directory containing HTML files for your website.</p>
+</div>
+<div id="commit-changes-to-git" class="section level2">
+<h2><span class="header-section-number">8.4</span> Commit Changes to Git</h2>
+<p>Before building the website, commit the changes to your Git repository:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>usethis<span class="op">::</span><span class="kw">use_git</span>()</span>
+<span id="cb27-2"><a href="#cb27-2"></a>usethis<span class="op">::</span><span class="kw">use_git_commit</span>(<span class="dt">message =</span> <span class="st">&quot;Add pkgdown configuration and setup&quot;</span>)</span></code></pre></div>
+<p>Alternatively, commit using the approach as described in the GIT section.</p>
+</div>
+<div id="activate-pages-on-github-and-gitlab" class="section level2">
+<h2><span class="header-section-number">8.5</span> Activate Pages on GitHub and GitLab</h2>
+<div id="github-pages-activation" class="section level3">
+<h3><span class="header-section-number">8.5.1</span> GitHub Pages Activation</h3>
+<pre><code>Go to your GitHub repository.
+Navigate to the &quot;Settings&quot; tab.
+Scroll down to the &quot;GitHub Pages&quot; section.
+Set the &quot;Source&quot; branch to main or master (whichever branch you are using).
+Confirm the activation.</code></pre>
+</div>
+<div id="gitlab-pages-activation" class="section level3">
+<h3><span class="header-section-number">8.5.2</span> GitLab Pages Activation</h3>
+<p>The activation process for GitLab Pages can vary based on your GitLab instance and permissions. Typically, it involves:</p>
+<pre><code>Go to your GitLab repository.
+Navigate to the &quot;Settings&quot; or &quot;CI / CD&quot; section.
+Look for &quot;Pages&quot; settings.
+Configure the Pages settings, including the source branch.</code></pre>
+<p>Please refer to the specific documentation of your GitLab instance for detailed instructions.</p>
+</div>
+</div>
+<div id="view-your-package-website" class="section level2">
+<h2><span class="header-section-number">8.6</span> View Your Package Website</h2>
+<p>After building the site, your package website will be available at the following link:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode php"><code class="sourceCode php"><span id="cb30-1"><a href="#cb30-1"></a>https:<span class="co">//&lt;USERNAME&gt;.github.io/&lt;REPOSITORYNAME&gt;/</span></span></code></pre></div>
+<p>Replace <USERNAME> and <REPOSITORYNAME> with your GitHub username and repository name.</p>
+<!-- # <a name="LFS"></a> -->
+</div>
+</div>
+<div id="large-file-support" class="section level1">
+<h1><span class="header-section-number">9</span> Large File Support</h1>
+<p>Large file support comes in handy if you would like to include large files in your package without versioning. This means that every time a LFS-object is changed, a new version is uploaded without tracking previous changes. To allow LFS navigate to (<a href="https://git-lfs.com/" class="uri">https://git-lfs.com/</a>)[<a href="https://git-lfs.com/" class="uri">https://git-lfs.com/</a>] to download and install the git LFS extension.</p>
+<div id="set-up-lfs" class="section level2">
+<h2><span class="header-section-number">9.1</span> Set up LFS</h2>
+<p>Once downloaded and installed, set up Git LFS for your user account by running:</p>
+<pre><code>git lfs install</code></pre>
+<p>You only need to run this once per user account.</p>
+</div>
+<div id="select-file-types" class="section level2">
+<h2><span class="header-section-number">9.2</span> Select file types</h2>
+<p>In each Git repository where you want to use Git LFS, select the file types you’d like Git LFS to manage (or directly edit your .gitattributes). You can configure additional file extensions at anytime.</p>
+<pre><code>git lfs track &quot;*.html&quot;</code></pre>
+</div>
+<div id="check-.gitattributes" class="section level2">
+<h2><span class="header-section-number">9.3</span> Check .gitattributes</h2>
+<p>Now make sure .gitattributes is tracked:</p>
+<pre><code>git add .gitattributes</code></pre>
+<!-- # <a name="shortcuts"></a> -->
+</div>
+</div>
+<div id="shortcuts" class="section level1">
+<h1><span class="header-section-number">10</span> Shortcuts</h1>
+<table>
+<thead>
+<tr class="header">
+<th align="left">MacOS / Windows</th>
+<th align="left">R command</th>
+<th align="left">Rstudio Menu</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><kbd>command/ctrl</kbd> + <kbd>shift</kbd> + <kbd>E</kbd></td>
+<td align="left">devtools::check()</td>
+<td align="left">build -&gt; Check Package</td>
+</tr>
+<tr class="even">
+<td align="left"><kbd>command/ctrl</kbd> + <kbd>shift</kbd> + <kbd>B</kbd></td>
+<td align="left">devtools::build()</td>
+<td align="left">build -&gt; Build Source Package</td>
+</tr>
+<tr class="odd">
+<td align="left"><kbd>command/ctrl</kbd> + <kbd>shift</kbd> + <kbd>L</kbd></td>
+<td align="left">devtools::load_all()</td>
+<td align="left">build -&gt; load all</td>
+</tr>
+<tr class="even">
+<td align="left"><kbd>command/ctrl</kbd> + <kbd>shift</kbd> + <kbd>D</kbd></td>
+<td align="left">devtools::document()</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><kbd>command/ctrl</kbd> + <kbd>option/alt</kbd> + <kbd>M</kbd></td>
+<td align="left"></td>
+<td align="left">Tools -&gt; Version Control -&gt; Commit</td>
+</tr>
+<tr class="even">
+<td align="left"><kbd>command/ctrl</kbd> + <kbd>shift</kbd> + <kbd>C</kbd></td>
+<td align="left"></td>
+<td align="left">Code -&gt; Comment/Uncomment Lines</td>
+</tr>
+<tr class="odd">
+<td align="left"><kbd>option/alt</kbd> + <kbd>shift</kbd> + <kbd>command/ctrl</kbd> + <kbd>R</kbd></td>
+<td align="left"></td>
+<td align="left">Code -&gt; Insert Roxygen Skeleton</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="extra" class="section level1">
+<h1><span class="header-section-number">11</span> EXTRA</h1>
+<div id="todor" class="section level2">
+<h2><span class="header-section-number">11.1</span> todor</h2>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">install.packages</span>(<span class="st">&#39;todor&#39;</span>)</span></code></pre></div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

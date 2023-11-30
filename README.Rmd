@@ -5,12 +5,22 @@ output:
     toc: yes
     number_sections: yes
   html_document:
+    css: html-md-01.css
     toc: yes
     number_sections: yes
     toc_float: yes
     toc_collapsed: yes
     toc_depth: 3
     theme: lumen
+knit: (function(input, ...) {
+    rmarkdown::render(
+      input,
+      output_file = 'index.html',
+      envir = globalenv()
+    )
+  })
+
+
 ---
 
 # Introduction 
