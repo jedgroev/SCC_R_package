@@ -40,7 +40,6 @@ output:
 
 R packages give you a structure to organize your code (and data) in a structured and standardized manner. In essence, an R package is a hyper-organized R project of functions. A first tip, whether you want to create an R package or not, it is always a beneficial to organize analyses that are part of a single work-package (e.g. publication, presentation) into an R project (and to use functions for tasks that can be repeated). A prerequisite to facilitate creating an R package is basic knowledge of rstudio-GUI. While RStudio is not necessary to create an R package, it really makes it much easier. 
 
-
 <!-- # <a name="beforestarting"></a> -->
 
 Before digging into the subject here is an short overview of the rstudio GUI and a list of necessary packages that will help you with building your first R package. 
