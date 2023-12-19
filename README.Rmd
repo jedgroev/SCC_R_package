@@ -319,6 +319,114 @@ usethis::use_vignette("test")
 
 <!-- # <a name="build"></a> -->
 
+# Unit tests with testthat 
+
+In the R programming language, the testthat package is widely used for unit testing. It provides a simple and expressive framework for writing and running tests, making it an essential tool for ensuring the correctness of your code. 
+
+## Install and Load testthat
+
+If you haven't installed the testthat package, you can do so using the following command:
+
+```r
+install.packages("testthat")
+```
+
+After installation, load the package in your R script or RStudio session:
+
+```r
+library(testthat)
+```
+
+## Create a Test File
+
+Create a separate directory within your package for tests, typically named "tests". Inside this directory, create a new R script for your tests. The function `use_testthat()` facilitates this by creating a standard structure for your tests.
+
+```r
+usethis::use_testthat()
+```
+
+## Writing Your First Test
+
+To write your first test let's use the function `use_test()`. This will automatically create a file `test-tests.R` in the directory `tests/testthat` and adds a test. 
+
+```r
+usethis::use_test()
+```
+
+You will see that the following simple test has been added to the file. In this example `test_that()` is used to define a test case and expect equal checks if the result of 2 * 2 is equal to 4. 
+
+```r
+test_that("multiplication works", {
+  expect_equal(2 * 2, 4)
+})
+```
+ 
+Applied on a function in your package this would look as follows. Let's assume you have a simple function called `add_numbers` in your package that adds two numbers. Here's an example of how you might write a test for it.
+
+```r
+test_that("add_numbers correctly adds two numbers", {
+  result <- yourpackage::add_numbers(2, 3)
+  expect_equal(result, 5)
+})
+```
+
+## Run Your Tests
+
+To run your tests, you can use the function `test_file()` which will execute all the tests defined in the specified file. 
+
+```r
+testthat::test_file('tests/testthat/test-tests.R')
+```
+
+To run tests specifically for your R-package you can use the `test` function in `devtools`.
+
+```r
+devtools::test()
+```
+
+## Assertions and Matchers
+
+testthat provides various assertions and matchers to test different conditions. Here are some examples:
+
+| Assertion/Matcher                 | Description                                                   |
+|-------------------------------------|---------------------------------------------------------------|
+| `expect_equal(object, expected)`   | Test if `object` is equal to `expected`.                      |
+| `expect_identical(object, expected)`| Test if `object` is identical to `expected`.                  |
+| `expect_equivalent(object, expected)`| Test if `object` is equivalent to `expected` (ignoring attributes). |
+| `expect_not_equal(object, unexpected)`| Test if `object` is not equal to `unexpected`.              |
+| `expect_not_identical(object, unexpected)`| Test if `object` is not identical to `unexpected`.      |
+| `expect_not_equivalent(object, unexpected)`| Test if `object` is not equivalent to `unexpected` (ignoring attributes). |
+| `expect_true(condition)`            | Test if `condition` is `TRUE`.                                |
+| `expect_false(condition)`           | Test if `condition` is `FALSE`.                               |
+| `expect_null(object)`               | Test if `object` is `NULL`.                                   |
+| `expect_not_null(object)`           | Test if `object` is not `NULL`.                               |
+| `expect_error(expr)`                | Test if evaluating `expr` produces an error.                 |
+| `expect_warning(expr)`              | Test if evaluating `expr` produces a warning.                |
+| `expect_length(object, expected_length)`| Test if the length of `object` is equal to `expected_length`.|
+| `expect_is(object, class)`          | Test if `object` is an instance of the specified `class`.    |
+| `expect_match(object, pattern)`     | Test if `object` matches the specified regular expression `pattern`. |
+| `expect_output(expr, expected_output)`| Test if evaluating `expr` produces the expected output.    |
+| `expect_gt(x, y)`                   | Test if `x` is greater than `y`.                             |
+| `expect_lt(x, y)`                   | Test if `x` is less than `y`.                                |
+| `expect_ge(x, y)`                   | Test if `x` is greater than or equal to `y`.                |
+| `expect_le(x, y)`                   | Test if `x` is less than or equal to `y`.                   |
+| `expect_setequal(set1, set2)`       | Test if the sets `set1` and `set2` are equal.               |
+| `expect_list_equal(list1, list2)`   | Test if the lists `list1` and `list2` are equal.            |
+| `expect_true(file.exists(path))`    | Test if a file exists at the specified `path`.              |
+| `expect_true(file.size(path) > 0)`  | Test if a file at the specified `path` is not empty.        |
+
+Refer to the testthat documentation for a complete list of assertions and matchers: https://testthat.r-lib.org/
+
+## Exercise
+
+---
+
+    1. create the above function add_numbers, including roxygen tags
+    2. add the above test of the function
+    3. run the test with devtools::test()
+
+---
+
 # Build 
 
 Once your package is ready, you can build your package using `devtools::build()` which will create a tarball (a compressed archive) of your package in the `./pkg/` directory. 
