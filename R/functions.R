@@ -26,6 +26,21 @@ C_to_F <- function(C_temp){
     return(F_temp);
 }
 
+#' @title add numbers
+#' 
+#' @description add numbers 
+#' @param x first number 
+#' @param y second number 
+#' @return sum of numbers 
+#' @examples 
+#' temp1 <- add_numbers(22);
+#' temp2 <- C_to_F( c(-2, 12, 23) );
+#' @export
+add_numbers <- function(x,y){
+  z <- x + y
+  if(is.null(y)) z <- x
+  return(z)
+}
 
 
 
