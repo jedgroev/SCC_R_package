@@ -365,7 +365,7 @@ Applied on a function in your package this would look as follows. Let's assume y
 
 ```r
 test_that("add_numbers correctly adds two numbers", {
-  result <- yourpackage::add_numbers(2, 3)
+  result <- add_numbers(2, 3)
   expect_equal(result, 5)
 })
 ```

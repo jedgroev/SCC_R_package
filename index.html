@@ -776,7 +776,7 @@ Make sure to describe each column of the data frame. </code></pre>
 <span id="cb21-3"><a href="#cb21-3"></a>})</span></code></pre></div>
 <p>Applied on a function in your package this would look as follows. Let’s assume you have a simple function called <code>add_numbers</code> in your package that adds two numbers. Here’s an example of how you might write a test for it.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">test_that</span>(<span class="st">&quot;add_numbers correctly adds two numbers&quot;</span>, {</span>
-<span id="cb22-2"><a href="#cb22-2"></a>  result &lt;-<span class="st"> </span>yourpackage<span class="op">::</span><span class="kw">add_numbers</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb22-2"><a href="#cb22-2"></a>  result &lt;-<span class="st"> </span><span class="kw">add_numbers</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span>
 <span id="cb22-3"><a href="#cb22-3"></a>  <span class="kw">expect_equal</span>(result, <span class="dv">5</span>)</span>
 <span id="cb22-4"><a href="#cb22-4"></a>})</span></code></pre></div>
 </div>
