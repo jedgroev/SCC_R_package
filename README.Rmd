@@ -42,7 +42,7 @@ Before digging into the subject here is an short overview of the rstudio GUI and
 
 To learn more in detail about project management with RStudio and Rmarkdown please have a look at the following precious resources:
 
-* https://carpentries-incubator.github.io/Reproducible-Publications-with-RStudio/
+* https://ucsbcarpentry.github.io/Reproducible-Publications-with-RStudio-Quarto/aio/index.html
 * https://swcarpentry.github.io/r-novice-gapminder/
 * https://www.markdownguide.org/basic-syntax/
 
@@ -317,6 +317,21 @@ It is a good idea to add extra detailed documentation of the usage of the R pack
 usethis::use_vignette("test") 
 ```
 
+## Using your R package in a vignette
+
+To use your R package in your vignette you need to have your package installed locally. The easiest way to install your package is by using
+the `devtools` function `install`. Note that this function will install the package locally using the version of your local folder.
+
+```r
+devtools::install()
+```
+
+Then, you can add the library refering to your R package within the vignette. 
+
+```r
+library(SCCRpackage)
+```
+
 <!-- # <a name="build"></a> -->
 
 # Unit tests with testthat 
@@ -588,6 +603,83 @@ git push <branchname>
 
 ------
 
+# Versioning
+
+Versioning is a crucial aspect of software development that involves assigning unique identifiers to different releases of a software product. It provides a systematic way to manage and communicate changes to a codebase over time. The choice of version number depends on the changes made in your package and the conventions you want to follow. A common convention is to use semantic versioning (SemVer), which consists of three numbers separated by dots (e.g., 1.2.3).
+
+Semantic versioning consists of the following components:
+
+| Version                         | Description                                                               |
+|:--------------------------------|---------------------------------------------------------------------------|
+| Major version (X.0.0)        | Incremented for incompatible API changes. Users may need to modify their code when updating to a new major version. |
+| Minor version (X.Y.0)        | Incremented for backward-compatible new features. Users should be able to update without breaking existing functionality. |
+| Patch version (X.Y.Z)        | Incremented for backward-compatible bug fixes. Indicates that no new features have been added, only bug fixes. |
+
+## Versioning your R package 
+
+When your intention is to share your R package with the community it is important to use a versioning system. To facilitate versioning for your R package you can use the function `usethis::use_version()`. The version of a R package is managed in the DESCRIPTION file. The only thing that `use_version` does is modify the DESCRIPTION file and it requests to commit the changes. 
+
+```r
+usethis::use_version()
+
+Current version is 0.0.0.9000.
+Which part to increment? (0 to exit) 
+
+1: major --> 1.0.0
+2: minor --> 0.1.0
+3: patch --> 0.0.1
+4:   dev --> 0.0.0.9001
+
+Selection:
+```
+
+## Initialize Versioning
+
+Before making your first official release, initialize versioning. By default, when creating your R-package directory structure the description file will define the first development version as `0.0.0.9000`,indicating that it's in the early stages and under active development. 
+
+To set-up the initial development version you could also run the following code.
+
+```r
+usethis::use_version("0.0.0.9000")
+```
+
+## First Official Release
+
+When you're prepared to publish your initial release for users, transition from the development version (e.g., 0.0.0.9000) to version 1.0.0. This change signifies that your package is stable and ready for public use. Optionally, you can include a release name to offer additional context about the significance of this specific version. Various strategies can be employed; for the first release; however, it is generally recommended to designate the inaugural official version as `1.0.0`.
+
+```r
+usethis::use_version("1.0.0", release_name = "Inaugural Release")
+```
+
+## Development and Changes
+
+As you develop your package, you'll make further changes. Follow the above guidelines for version updates distinguishing between:
+
+    Major Version (X.0.0)
+    Minor Version (X.Y.0)
+    Patch Version (X.Y.Z)
+
+## Create a news item
+
+Whenever we update the package version we should record what changes have been made. We do this is a NEWS.md file.
+
+```r
+usethis::use_news_md()
+
+✔ Writing 'NEWS.md'
+● Modify 'NEWS.md'
+```
+
+Modify the file to record what we have done during the workshop.
+
+```r
+# mypkg 1.0.0
+
+* Created the package
+* Added the `make_shades()` function
+* Added the `plot_colours()` function
+* Added a vignette
+```
 
 <!-- # <a name="www"></a> -->
 
