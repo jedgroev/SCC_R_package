@@ -3,6 +3,6 @@ test_that("multiplication works", {
 })
 
 test_that("add_numbers correctly adds two numbers", {
-  result <- SCC_R_Package2::add_numbers(2, 3)
+  result <- add_numbers(2, 3)
   expect_equal(result, 5)
 })
